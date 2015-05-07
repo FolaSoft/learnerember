@@ -52,6 +52,39 @@
     </div>
   </script>
 
+
+  <script type="text/x-handlebars" id="themes">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class='table'>
+            <thead>
+              <tr><th>Recent themes</th></tr>
+            </thead>
+              <tbody>
+              {{#each model}}
+                <tr>
+                  <td>
+                    {{#link-to 'theme' this}}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+        
+          </table>
+        </div>
+
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+  </script>
+
+ <script type="text/x-handlebars" id="themes/index">
+    <p class="text-warning">Please select a theme</p>
+  </script>
+
   <script type="text/x-handlebars" id="posts/index">
     <p class="text-warning">Please select a post</p>
   </script>
@@ -77,6 +110,22 @@
       {{format-markdown body}}
     </div>
   </script>
+
+  <script type="text/x-handlebars" id="theme">
+   
+
+    <h1>{{theme.name}}</h1>
+    <h1>{{theme.id}}</h1>
+    <h1>{{theme.cost}}</h1>
+    <ul>
+      {{#each incident in incidents}}
+        <li>Major Incident number: {{incident.id}}, Description: {{incident.description}} Dollar Impact: {{incident.cost}} </li>
+      {{/each}}
+    </ul>
+    <hr>
+
+  </script>
+
 
   <script type="text/x-handlebars" id="post/_edit">
     <p>{{input type="text" value=title}}</p>

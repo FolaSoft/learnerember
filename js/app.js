@@ -16,8 +16,44 @@ var posts = [{
   body: "A long list of topics were raised and I took a time to ramble at large about all of them at once. Apologies for not taking the time to be more succinct, but at least each topic has a header so you can skip stuff you don't care about.\n\n### Maintainability\n\nIt's simply not true to say that I don't care about maintainability. I still work on the oldest Rails app in the world."  
 }];
 
+
+var themes = [
+  {
+    id: '1',
+    name: "Deployment",
+    cost: "$22,000",
+  }, 
+  {
+    id: '2',
+    name: "Design",
+    cost: "$3,000",
+  },
+  {
+    id: '3',
+    name: "Testing",
+    cost: "$5,000",
+  },
+  {
+    id: '4',
+    name: "Capacity",
+    cost: "$6,000",
+  },
+  {
+    id: '5',
+    name: "Monitoring",
+    cost: "$2,000",
+  },
+  {
+    id: '6',
+    name: "Unknown",
+    cost: "$12,000",
+  }
+];
+
 App.Router.map(function() {
-  this.resource('themes');
+  this.resource('themes', function() {
+    this.resource('theme', { path: ':theme_id' });
+  });
   this.resource('about');
   this.resource('posts', function() {
     this.resource('post', { path: ':post_id' });
@@ -33,6 +69,26 @@ App.PostsRoute = Ember.Route.extend({
 App.PostRoute = Ember.Route.extend({
   model: function(params) {
     return posts.findBy('id', params.post_id);
+  }
+});
+
+App.ThemesRoute = Ember.Route.extend({
+  model: function() {
+    return themes;
+  }
+});
+
+App.ThemeRoute = Ember.Route.extend({
+  model: function(params) {
+    var data = { 
+      theme: themes.findBy('id', params.theme_id),
+      incidents:[
+        { description: "incident1"},
+        { description: "incident2"},
+        { description: "incident3"}
+      ]
+    }
+    return data;
   }
 });
 
