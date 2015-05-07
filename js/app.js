@@ -50,6 +50,30 @@ var themes = [
   }
 ];
 
+var incidents = [
+  { 
+    id: '1',
+    description: "incident1",
+    cost: "$1000",
+    iscompliant: 'yes',
+    themeId: "1"
+  },
+  { 
+    id: '2',
+    description: "incident2",
+    cost: "$4000",
+    iscompliant: 'yes',
+    themeId: "1"
+  },
+  { 
+    id: '3',
+    description: "incident3",
+    cost: "$2000",
+    iscompliant: 'yes',
+    themeId: "3"
+  }
+];
+
 App.Router.map(function() {
   this.resource('themes', function() {
     this.resource('theme', { path: ':theme_id' });
@@ -82,11 +106,7 @@ App.ThemeRoute = Ember.Route.extend({
   model: function(params) {
     var data = { 
       theme: themes.findBy('id', params.theme_id),
-      incidents:[
-        { description: "incident1"},
-        { description: "incident2"},
-        { description: "incident3"}
-      ]
+      incidents: incidents.filterBy('themeId', params.theme_id)
     }
     return data;
   }

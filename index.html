@@ -54,35 +54,34 @@
 
 
   <script type="text/x-handlebars" id="themes">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <table class='table'>
-            <thead>
-              <tr><th>Recent themes</th></tr>
-            </thead>
-              <tbody>
-              {{#each model}}
-                <tr>
-                  <td>
-                    {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-        
-          </table>
-        </div>
-
-        <div class="span9">
-          {{outlet}}
-        </div>
-      </div>
+      {{outlet}}
     </div>
   </script>
-
+ 
  <script type="text/x-handlebars" id="themes/index">
-    <p class="text-warning">Please select a theme</p>
+    <div class="row-fluid">
+      <div class="span3">
+        <table class='table'>
+          <thead>
+            <tr><th>Recent themes</th></tr>
+          </thead>
+            <tbody>
+            {{#each model}}
+              <tr>
+                <td>
+                  {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+      
+        </table>
+      </div>
+
+      <div class="span9">
+        <p class="text-warning">Please select a theme</p>
+      </div>
+    </div>
   </script>
 
   <script type="text/x-handlebars" id="posts/index">
