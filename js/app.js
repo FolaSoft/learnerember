@@ -17,6 +17,7 @@ var posts = [{
 }];
 
 App.Router.map(function() {
+  this.resource('themes');
   this.resource('about');
   this.resource('posts', function() {
     this.resource('post', { path: ':post_id' });
