@@ -65,7 +65,7 @@
               {{#each model}}
                 <tr>
                   <td>
-                    {{#link-to 'theme' this}}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
+                    {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
                   </td>
                 </tr>
               {{/each}}
