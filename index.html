@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
     <link rel="stylesheet" href="css/vendors/adminlte/skin-blue.css">
     <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body class="skin-blue sidebar-collapse">
     <script type="text/x-handlebars">
@@ -112,7 +113,7 @@
                         <div class="box-footer no-padding">
                             <ul class="nav nav-pills nav-stacked">
                                 {{#each model}}
-                                <li>{{#link-to 'theme' this.id}}<i class="fa fa-cheveron-right"></i>{{name}} <span class="pull-right text-aqua">{{cost}}</span>{{/link-to}}</li>
+                                <li>{{#link-to 'theme' this.id}}<i class="fa fa-chevron-right"></i>{{name}} <span class="pull-right text-aqua">{{cost}}</span>{{/link-to}}</li>
                                 {{/each}}
                             </ul>
                         </div><!-- /.footer -->
@@ -204,15 +205,640 @@
         </div>
     </script>
     <script type="text/x-handlebars" id="theme">
-        <h1>{{theme.name}}</h1>
-        <h1>{{theme.id}}</h1>
-        <h1>{{theme.cost}}</h1>
-        <ul>
-            {{#each incident in incidents}}
-            <li>Major Incident number: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}} </li>
-            {{/each}}
-        </ul>
-        </hr>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Major Incidents
+                <small>what you need to know</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Themes by dollar impact</a></li>
+            </ol>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="info-box bg-aqua">
+                                    <span class="info-box-icon"><i class="ion-social-usd"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Design Flaws</span>
+                                        <span class="info-box-number">$150,000</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                        </div>
+                                        <span class="progress-description">
+                                            Incdents in this category make up 30% of all financial impact in the month
+                                        </span>
+                                    </div><!-- /.info-box-content -->
+                                </div><!-- /.info-box -->
+                            </div><!-- /.box-header -->
+                            <!-- form start -->
+
+                            <form role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <div class="box box-primary collapsed-box box-solid">
+                                            <div class="box-header">
+                                                <h3 class="box-title">IM3454334: Lync Server Outage</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                                    <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 60,000</span>
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p><h5><b>Major impacting events in last 12 months</h5></b></p>
+                                                <blockquote>
+
+                                                    <p>None</p>
+                                                    <footer>A legacy IT system.<cite title="Source Title">Targeted for Sunsent</cite></footer>
+                                                </blockquote>
+                                                <dl>
+                                                    <dt>Past commitments @ risk</dt>
+                                                    <dd>
+                                                        <p><h4><span class="label label-primary"> No</span></h4></p>
+
+
+                                                    </dd>
+                                                </dl>
+                                                <p><h5><b>Past Identified Themes </h5></b></p>
+                                                <blockquote>
+
+                                                    <p>Redundancy Gaps</p>
+                                                    <footer>Previously identified <cite title="Source Title"> 1 out of every 4 incidents belongs to category</cite></footer>
+                                                </blockquote>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+
+
+                                    </div>
+
+                                    <div class="box box-primary box-solid">
+                                        <div class="box-header">
+                                            <h3 class="box-title">IM3454334: Exchange Server Outage down</h3>
+                                            <!--<div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                            </div>-->
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                                <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 40,000</span>
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p><h5><b>What happened </h5></b></p>
+                                            <blockquote>
+
+                                                <p>On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue</p>
+                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                            </blockquote>
+                                            <dl>
+                                                <dt>What teams are accountable</dt>
+                                                <dd>
+                                                    <ul class="list-unstyled">
+                                                        <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
+                                                        <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                        <li><h4><span class="label label-primary"> ECIT</span></h4></li>
+
+
+                                                    </ul>
+                                                </dd>
+                                            </dl>
+                                            <p><h5><b>What is the business impact</h5></b></p>
+                                            <blockquote>
+
+                                                <p>
+                                                    The IMS system stopped routing customer and internal partner submitted support requests, impacting over 1.5k users. (Ad Support Search, adshelp - Display (AMPS), API, CPSS, Global Publisher Support Tier 2,  etc.)
+                                                </p>
+                                                <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
+                                            </blockquote>
+                                            <div class="box-group" id="accordion">
+                                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                                <div class="panel box box-primary">
+                                                    <div class="box-header with-border">
+                                                        <h4 class="box-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                Root Cause and Classifications
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseOne" class="panel-collapse collapse">
+                                                        <div class="box-body">
+                                                            <p><h5><b>What is the root cause </h5></b></p>
+                                                            <blockquote>
+
+                                                                <p>
+                                                                    The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
+                                                                </p>
+                                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                                            </blockquote>
+                                                            <dl>
+                                                                <dt>Root Cause Category</dt>
+                                                                <dd>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><h4><span class="label label-primary"> Service Redundacy Gap</span></h4></li>
+                                                                    </ul>
+
+                                                                </dd>
+                                                            </dl>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- TABLE: Open Comitments -->
+                                            <div class="box box-primary box-solid">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">IM3453334: Xbox Server Outage</h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                                        <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 30,000</span>
+                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    </div>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>What</th>
+                                                                    <th>Who</th>
+                                                                    <th>By When</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><a href="#">MI0002128</a></td>
+                                                                    <td>MIMOS FY14Q3 Period</td>
+                                                                    <td>
+                                                                        Kevin Lin
+
+                                                                    </td>
+                                                                    <td>
+                                                                        Q3 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0003456</a></td>
+                                                                    <td>XRetunrs website</td>
+                                                                    <td>
+                                                                        Azharuddin Mohammed
+                                                                    </td>
+                                                                    <td>
+                                                                        Q4 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0004567</a></td>
+                                                                    <td>Exchange service used to host email data</td>
+                                                                    <td>
+                                                                        Kevin Spacey
+                                                                    </td>
+                                                                    <td>
+                                                                        Q4 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0005678</a></td>
+                                                                    <td>MSExpense and MS Vendor Site</td>
+                                                                    <td>
+                                                                        Sean Connery
+                                                                    </td>
+                                                                    <td>
+                                                                        Q2 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008515</a></td>
+                                                                    <td>Reverse Logistics (RL) database</td>
+                                                                    <td>
+                                                                        Jackie Chan
+                                                                    </td>
+                                                                    <td>
+                                                                        Q1 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008723</a></td>
+                                                                    <td>Lync communications for business</td>
+                                                                    <td>
+                                                                        Demi Moore
+                                                                    </td>
+                                                                    <td>
+                                                                        Q3 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0009812</a></td>
+                                                                    <td>ICOE message queueing service</td>
+                                                                    <td>
+                                                                        Ipanema Girl
+                                                                    </td>
+                                                                    <td>
+                                                                        Q2 FY16
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div><!-- /.table-responsive -->
+                                                </div><!-- /.box-body -->
+
+                                            </div><!-- /.box -->
+                                        </div><!-- /.col -->
+
+                                    </div><!-- /.row -->
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- TABLE: Open Comitments -->
+                                            <div class="box box-primary box-solid">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">IM45653334: Windows Server Outage</h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                                        <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 20,000</span>
+                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    </div>
+
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>What</th>
+                                                                    <th>Who</th>
+                                                                    <th>By When</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><a href="#">MI0002128</a></td>
+                                                                    <td>MIMOS FY14Q3 Period</td>
+                                                                    <td>
+                                                                        Kevin Lin
+
+                                                                    </td>
+                                                                    <td>
+                                                                        Q3 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0003456</a></td>
+                                                                    <td>XRetunrs website</td>
+                                                                    <td>
+                                                                        Azharuddin Mohammed
+                                                                    </td>
+                                                                    <td>
+                                                                        Q4 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0004567</a></td>
+                                                                    <td>Exchange service used to host email data</td>
+                                                                    <td>
+                                                                        Kevin Spacey
+                                                                    </td>
+                                                                    <td>
+                                                                        Q4 FY15
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0005678</a></td>
+                                                                    <td>MSExpense and MS Vendor Site</td>
+                                                                    <td>
+                                                                        Sean Connery
+                                                                    </td>
+                                                                    <td>
+                                                                        Q2 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008515</a></td>
+                                                                    <td>Reverse Logistics (RL) database</td>
+                                                                    <td>
+                                                                        Jackie Chan
+                                                                    </td>
+                                                                    <td>
+                                                                        Q1 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008723</a></td>
+                                                                    <td>Lync communications for business</td>
+                                                                    <td>
+                                                                        Demi Moore
+                                                                    </td>
+                                                                    <td>
+                                                                        Q3 FY16
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0009812</a></td>
+                                                                    <td>ICOE message queueing service</td>
+                                                                    <td>
+                                                                        Ipanema Girl
+                                                                    </td>
+                                                                    <td>
+                                                                        Q2 FY16
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div><!-- /.table-responsive -->
+                                                </div><!-- /.box-body -->
+
+                                            </div><!-- /.box -->
+                                        </div><!-- /.col -->
+
+                                    </div><!-- /.row -->
+                                </div><!-- /.box-body -->
+
+
+                            </form>
+
+                        </div><!-- /.box -->
+
+
+                    </div>   <!-- /.row -->
+                </div>
+
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h3 class="box-title">IM3454334: Exchange Server Outage</h3>
+                            </div><!-- /.box-header -->
+                            <!-- form start -->
+
+                            <form role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <div class="box box-primary collapsed-box box-solid">
+                                            <div class="box-header">
+                                                <h3 class="box-title">History</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p><h5><b>Major impacting events in last 12 months</h5></b></p>
+                                                <blockquote>
+
+                                                    <p>None</p>
+                                                    <footer>A legacy IT system.<cite title="Source Title">Targeted for Sunsent</cite></footer>
+                                                </blockquote>
+                                                <dl>
+                                                    <dt>Past commitments @ risk</dt>
+                                                    <dd>
+                                                        <p><h4><span class="label label-primary"> No</span></h4></p>
+
+
+                                                    </dd>
+                                                </dl>
+                                                <p><h5><b>Past Identified Themes </h5></b></p>
+                                                <blockquote>
+
+                                                    <p>Redundancy Gaps</p>
+                                                    <footer>Previously identified <cite title="Source Title"> 1 out of every 4 incidents belongs to category</cite></footer>
+                                                </blockquote>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+
+
+                                    </div>
+
+                                    <div class="box box-primary box-solid">
+                                        <div class="box-header">
+                                            <h3 class="box-title">Present</h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p><h5><b>What happened </h5></b></p>
+                                            <blockquote>
+
+                                                <p>On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue</p>
+                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                            </blockquote>
+                                            <dl>
+                                                <dt>What teams are accountable</dt>
+                                                <dd>
+                                                    <ul class="list-unstyled">
+                                                        <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
+                                                        <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                        <li><h4><span class="label label-primary"> ECIT</span></h4></li>
+
+
+                                                    </ul>
+                                                </dd>
+                                            </dl>
+                                            <p><h5><b>What is the business impact</h5></b></p>
+                                            <blockquote>
+
+                                                <p>
+                                                    The IMS system stopped routing customer and internal partner submitted support requests, impacting over 1.5k users. (Ad Support Search, adshelp - Display (AMPS), API, CPSS, Global Publisher Support Tier 2,  etc.)
+                                                </p>
+                                                <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
+                                            </blockquote>
+                                            <div class="box-group" id="accordion">
+                                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                                <div class="panel box box-primary">
+                                                    <div class="box-header with-border">
+                                                        <h4 class="box-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                Root Cause and Classifications
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseOne" class="panel-collapse collapse">
+                                                        <div class="box-body">
+                                                            <p><h5><b>What is the root cause </h5></b></p>
+                                                            <blockquote>
+
+                                                                <p>
+                                                                    The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
+                                                                </p>
+                                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                                            </blockquote>
+                                                            <dl>
+                                                                <dt>Root Cause Category</dt>
+                                                                <dd>
+                                                                    <large class="label label-primary label-lg"> Service Redundancy Design </large>
+
+
+                                                                </dd>
+                                                            </dl>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- TABLE: Open Comitments -->
+                                            <div class="box box-primary box-solid">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Future</h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
+                                                    </div>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Description</th>
+                                                                    <th>Progress</th>
+                                                                    <th>Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><a href="#">MI0002128</a></td>
+                                                                    <td>MIMOS FY14Q3 Period</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-green" style="width: 90%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-green"><b> 90%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0003456</a></td>
+                                                                    <td>XRetunrs website</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-red" style="width: 50%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-red"><b> 50%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0004567</a></td>
+                                                                    <td>Exchange service used to host email data</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-yellow" style="width: 55%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-yellow"><b> 55%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0005678</a></td>
+                                                                    <td>MSExpense and MS Vendor Site</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-green" style="width: 95%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-green"><b> 95%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008515</a></td>
+                                                                    <td>Reverse Logistics (RL) database</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-red" style="width: 10%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-red"><b> 10%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0008723</a></td>
+                                                                    <td>Lync communications for business</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-green" style="width: 85%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="text-green"><b> 85%</b></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><a href="#">MI0009812</a></td>
+                                                                    <td>ICOE message queueing service</td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar progress-bar-yellow" style="width: 65%"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p class="text-yellow"><b> 65%</b></p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div><!-- /.table-responsive -->
+                                                </div><!-- /.box-body -->
+
+                                            </div><!-- /.box -->
+                                        </div><!-- /.col -->
+
+                                    </div><!-- /.row -->
+
+                                </div><!-- /.box-body -->
+
+
+                            </form>
+
+                        </div><!-- /.box -->
+
+
+                    </div>   <!-- /.row -->
+                </div>
+            </section><!-- /.content -->
+        </section>
+
+        <section class="content">
+            <!--<h1>{{theme.name}}</h1>
+            <h1>{{theme.id}}</h1>
+            <h1>{{theme.cost}}</h1>-->
+            <ul>
+                {{#each incident in incidents}}
+                <li>Major Incident number: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}} </li>
+                {{/each}}
+            </ul>
+
+        </section>
     </script>
 
     <script type="text/x-handlebars" id="post/_edit">
