@@ -8,34 +8,15 @@
     <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
     <link rel="stylesheet" href="css/vendors/adminlte/skin-blue.css">
     <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
-<body class="skin-blue">
+<body class="skin-blue sidebar-collapse">
     <script type="text/x-handlebars">
-        <!--<div class="navbar">
-            <div class="navbar-inner">
-                {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
-                <ul class="nav">
-                    <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
-                    <li>{{#link-to 'about'}}About{{/link-to}}</li>
-                    <li>{{#link-to 'themes'}}Themes{{/link-to}}</li>
-                </ul>
-            </div>
-        </div>-->
-
         <header class="main-header">
             <div class="logo">
                 {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
             </div>
-            
-
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <!--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>-->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
@@ -74,33 +55,133 @@
     </script>
 
     <script type="text/x-handlebars" id="themes">
-        {{outlet}}
+        <div class="wrapper">
+            <div class="content-wrapper">
+                {{outlet}}
+            </div>
         </div>
+
     </script>
 
     <script type="text/x-handlebars" id="themes/index">
-        <div class="row-fluid">
-            <div class="span3">
-                <table class='table'>
-                    <thead>
-                        <tr><th>Recent themes</th></tr>
-                    </thead>
-                    <tbody>
-                        {{#each model}}
-                        <tr>
-                            <td>
-                                {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Major Incidents
+                <small>what you need to know</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+            </ol>
+        </section>
 
-                </table>
-            </div>
-            <div class="span9">
-                <p class="text-warning">Please select a theme</p>
-            </div>
-        </div>
+        <section class="content">
+            <!-- Apple to Apple Chart-->
+            <div class="row">
+                <!-- Left col -->
+                <div class="col-md-6">
+                    <!-- MAP & BOX PANE -->
+                    <!-- Bar chart -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">US Dollars by Theme</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <div class="btn-group">
+                                    <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Alert Owner</a></li>
+                                        <li><a href="#">Alert Team</a></li>
+                                        <li><a href="#">Require Deep Dive</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">My notes on this...</a></li>
+                                    </ul>
+                                </div>
+                                <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+
+                        </div>
+                        <div class="box-body">
+                            <div class="chart-responsive">
+                                <canvas id="pieChart" height="150"></canvas>
+                                <div><div id="chart2"></div></div>
+                                <p id="canvas_size2"></p>
+                            </div><!-- ./chart-responsive -->
+                        </div><!-- /.box-body-->
+                        <div class="box-footer no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                {{#each model}}
+                                <li>{{#link-to 'theme' this.id}}<i class="fa fa-cheveron-right"></i>{{name}} <span class="pull-right text-aqua">{{cost}}</span>{{/link-to}}</li>
+                                {{/each}}
+                            </ul>
+                        </div><!-- /.footer -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+
+                <div class="col-md-6">
+                    <!-- Info Boxes Style 2 -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Quantity by Theme
+                            </h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+
+                            <div>
+                                <div class="chart-responsive">
+                                    <canvas id="pieChart" height="150"></canvas>
+                                    <div id="chart"></div>
+                                    <p id="canvas_size"></p>
+                                </div><!-- ./chart-responsive -->
+                            </div><!-- /.col -->
+                            <!-- /.col -->
+
+                        </div><!-- /.box-body -->
+                        <div class="box-footer no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Design Flaws <span class="pull-right">15 incidents</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-green"></i>Monitoring Deficiency<span class="pull-right">15 incidents</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Capacity <span class="pull-right">20 incidents</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>Insufficient Testing<span class="pull-right">10 incidents</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>Deployment<span class="pull-right">30 incidents</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-gray"></i>Unknown<span class="pull-right">20 incidents</span></a></li>
+                            </ul>
+                        </div><!-- /.footer -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- Apple to Apple Chart-->
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- interactive chart -->
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <i class="fa fa-bar-chart-o"></i>
+                            <h3 class="box-title">6 Months Incident Volume</h3>
+                            <div class="box-tools pull-right">
+                                Real time
+                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                    <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On</button>
+                                    <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="line-chart" style="height: 300px;"></div>
+                        </div><!-- /.box-body-->
+                    </div><!-- /.box -->
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </section>
+
+
     </script>
     <script type="text/x-handlebars" id="posts/index">
         <p class="text-warning">Please select a post</p>
@@ -128,7 +209,7 @@
         <h1>{{theme.cost}}</h1>
         <ul>
             {{#each incident in incidents}}
-            <li>Major Incident number: {{incident.id}}, Description: {{incident.description}} Dollar Impact: {{incident.cost}} </li>
+            <li>Major Incident number: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}} </li>
             {{/each}}
         </ul>
         </hr>
