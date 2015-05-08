@@ -1,174 +1,174 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Ember Starter Kit</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
-  <link rel="stylesheet" href="css/vendors/adminlte/skin-blue.css">
-  <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.css">
+    <meta charset="utf-8">
+    <title>Ember Starter Kit</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
+    <link rel="stylesheet" href="css/vendors/adminlte/skin-blue.css">
+    <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.css">
 </head>
 <body class="skin-blue">
+    <script type="text/x-handlebars">
+        <!--<div class="navbar">
+            <div class="navbar-inner">
+                {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
+                <ul class="nav">
+                    <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
+                    <li>{{#link-to 'about'}}About{{/link-to}}</li>
+                    <li>{{#link-to 'themes'}}Themes{{/link-to}}</li>
+                </ul>
+            </div>
+        </div>-->
 
-  <script type="text/x-handlebars">
-    <div class="navbar">
-      <div class="navbar-inner">
-        {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
-        <ul class="nav">
-          <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
-          <li>{{#link-to 'about'}}About{{/link-to}}</li>
-          <li>{{#link-to 'themes'}}Themes{{/link-to}}</li>
-        </ul>
-      </div>
-    </div>
-   
+        <header class="main-header">
+            <div class="logo">
+                {{#link-to 'index' class='brand'}}Bloggr{{/link-to}}
+            </div>
+            
 
-    {{outlet}}
-  </script>
-
-  <script type="text/x-handlebars" id="posts">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <table class='table'>
-            <thead>
-              <tr><th>Recent Posts</th></tr>
-            </thead>
-
-            <tbody>
-              {{#each model}}
-                <tr>
-                  <td>
-                    {{#link-to 'post' this}}{{title}} <small class='muted'>by {{author.name}}</small>{{/link-to}}
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <!--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>-->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
+                        <li>{{#link-to 'about'}}About{{/link-to}}</li>
+                        <li>{{#link-to 'themes'}}Themes{{/link-to}}</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {{outlet}}
+    </script>
+    <script type="text/x-handlebars" id="posts">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <table class='table'>
+                        <thead>
+                            <tr><th>Recent Posts</th></tr>
+                        </thead>
+                        <tbody>
+                            {{#each model}}
+                            <tr>
+                                <td>
+                                    {{#link-to 'post' this}}{{title}} <small class='muted'>by {{author.name}}</small>{{/link-to}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="span9">
+                    {{outlet}}
+                </div>
+            </div>
         </div>
+    </script>
 
-        <div class="span9">
-          {{outlet}}
+    <script type="text/x-handlebars" id="themes">
+        {{outlet}}
         </div>
-      </div>
-    </div>
-  </script>
+    </script>
 
+    <script type="text/x-handlebars" id="themes/index">
+        <div class="row-fluid">
+            <div class="span3">
+                <table class='table'>
+                    <thead>
+                        <tr><th>Recent themes</th></tr>
+                    </thead>
+                    <tbody>
+                        {{#each model}}
+                        <tr>
+                            <td>
+                                {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
 
-  <script type="text/x-handlebars" id="themes">
-      {{outlet}}
-    </div>
-  </script>
- 
- <script type="text/x-handlebars" id="themes/index">
-    <div class="row-fluid">
-      <div class="span3">
-        <table class='table'>
-          <thead>
-            <tr><th>Recent themes</th></tr>
-          </thead>
-            <tbody>
-            {{#each model}}
-              <tr>
-                <td>
-                  {{#link-to 'theme' this.id }}{{name}} <small class='muted'>by {{cost}}</small>{{/link-to}}
-                </td>
-              </tr>
+                </table>
+            </div>
+            <div class="span9">
+                <p class="text-warning">Please select a theme</p>
+            </div>
+        </div>
+    </script>
+    <script type="text/x-handlebars" id="posts/index">
+        <p class="text-warning">Please select a post</p>
+    </script>
+    <script type="text/x-handlebars" id="post">
+        {{#if isEditing}}
+        {{partial 'post/edit'}}
+        <button {{action 'doneEditing'}}>Done</button>
+        {{else}}
+        <button {{action 'edit'}}>Edit</button>
+        {{/if}}
+        <h1>{{title}}</h1>
+        <h2>by {{author.name}} <small class='muted'>({{format-date date}})</small></h2>
+        <hr>
+        <div class='intro'>
+            {{format-markdown excerpt}}
+        </div>
+        <div class='below-the-fold'>
+            {{format-markdown body}}
+        </div>
+    </script>
+    <script type="text/x-handlebars" id="theme">
+        <h1>{{theme.name}}</h1>
+        <h1>{{theme.id}}</h1>
+        <h1>{{theme.cost}}</h1>
+        <ul>
+            {{#each incident in incidents}}
+            <li>Major Incident number: {{incident.id}}, Description: {{incident.description}} Dollar Impact: {{incident.cost}} </li>
             {{/each}}
-          </tbody>
-      
-        </table>
-      </div>
+        </ul>
+        </hr>
+    </script>
 
-      <div class="span9">
-        <p class="text-warning">Please select a theme</p>
-      </div>
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" id="posts/index">
-    <p class="text-warning">Please select a post</p>
-  </script>
-
-  <script type="text/x-handlebars" id="post">
-    {{#if isEditing}}
-      {{partial 'post/edit'}}
-      <button {{action 'doneEditing'}}>Done</button>
-    {{else}}
-      <button {{action 'edit'}}>Edit</button>
-    {{/if}}
-
-    <h1>{{title}}</h1>
-    <h2>by {{author.name}} <small class='muted'>({{format-date date}})</small></h2>
-
-    <hr>
-
-    <div class='intro'>
-      {{format-markdown excerpt}}
-    </div>
-
-    <div class='below-the-fold'>
-      {{format-markdown body}}
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" id="theme">
-    <h1>{{theme.name}}</h1>
-    <h1>{{theme.id}}</h1>
-    <h1>{{theme.cost}}</h1>
-    <ul>
-      {{#each incident in incidents}}
-        <li>Major Incident number: {{incident.id}}, Description: {{incident.description}} Dollar Impact: {{incident.cost}} </li>
-      {{/each}}
-    </ul>
-    </hr>
-   </script>
-
-
-  <script type="text/x-handlebars" id="post/_edit">
-    <p>{{input type="text" value=title}}</p>
-    <p>{{input type="text" value=excerpt}}</p>
-    <p>{{textarea value=body}}</p>
-  </script>
-
-  <script type="text/x-handlebars" id="about">
-    <div class='about'>
-      <p>
-        Yehuda Katz is a member of the <a href="http://emberjs.com">Ember.js</a>, <a href="http://rubyonrails.org">Ruby on Rails</a>
-        and <a href="http://www.jquery.com">jQuery</a> Core Teams; he spends his daytime hours at the startup he founded,
-        <a href="http://www.tilde.io">Tilde Inc.</a>.
-      </p>
-
-      <p>
-        Yehuda is co-author of best-selling <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_176">jQuery in Action</a> and
-        <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_145">Rails 3 in Action</a>.
-      </p>
-
-      <p>
-        He spends most of his time hacking on open source—his main projects, along with others, like <a href="https://github.com/wycats/thor">Thor</a>,
-        <a href="http://www.handlebarsjs.com">Handlebars</a> and <a href="https://github.com/carlhuda/janus">Janus</a>—or traveling the world doing evangelism work.
-      </p>
-
-      <p>He can be found on Twitter as <a href="http://www.twitter.com/wycats">@wycats</a>.</p>
-    </div>
-
-    <div class='about'>
-      <p>My name is Tom Dale. I helped create <a href="http://www.emberjs.com/">Ember.js</a>, a JavaScript framework that brings sanity to the web.</p>
-
-      <p>In October of 2011, I co-founded <a href="http://www.tilde.io">Tilde</a> with Yehuda Katz, Leah Silber and Carl Lerche.</p>
-
-      <p>In my spare time I run a cash-for-beer exchange program at many local San Francisco dive bars.</p>
-    </div>
-  </script>
-
-  <script src="js/libs/jquery-v1.11.1.js"></script>
-  <script src="js/libs/handlebars-v1.3.0.js"></script>
-  <script src="js/libs/ember-v1.6.1.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
-  <script src="js/vendors/adminlte/app.min.js"></script>
-  <script src="js/vendors/bootstrap/bootstrap.min.js"></script>
-  <script src="js/app.js"></script>
+    <script type="text/x-handlebars" id="post/_edit">
+        <p>{{input type="text" value=title}}</p>
+        <p>{{input type="text" value=excerpt}}</p>
+        <p>{{textarea value=body}}</p>
+    </script>
+    <script type="text/x-handlebars" id="about">
+        <div class='about'>
+            <p>
+                Yehuda Katz is a member of the <a href="http://emberjs.com">Ember.js</a>, <a href="http://rubyonrails.org">Ruby on Rails</a>
+                and <a href="http://www.jquery.com">jQuery</a> Core Teams; he spends his daytime hours at the startup he founded,
+                <a href="http://www.tilde.io">Tilde Inc.</a>.
+            </p>
+            <p>
+                Yehuda is co-author of best-selling <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_176">jQuery in Action</a> and
+                <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_145">Rails 3 in Action</a>.
+            </p>
+            <p>
+                He spends most of his time hacking on open source—his main projects, along with others, like <a href="https://github.com/wycats/thor">Thor</a>,
+                <a href="http://www.handlebarsjs.com">Handlebars</a> and <a href="https://github.com/carlhuda/janus">Janus</a>—or traveling the world doing evangelism work.
+            </p>
+            <p>He can be found on Twitter as <a href="http://www.twitter.com/wycats">@wycats</a>.</p>
+        </div>
+        <div class='about'>
+            <p>My name is Tom Dale. I helped create <a href="http://www.emberjs.com/">Ember.js</a>, a JavaScript framework that brings sanity to the web.</p>
+            <p>In October of 2011, I co-founded <a href="http://www.tilde.io">Tilde</a> with Yehuda Katz, Leah Silber and Carl Lerche.</p>
+            <p>In my spare time I run a cash-for-beer exchange program at many local San Francisco dive bars.</p>
+        </div>
+    </script>
+    <script src="js/libs/jquery-v1.11.1.js"></script>
+    <script src="js/libs/handlebars-v1.3.0.js"></script>
+    <script src="js/libs/ember-v1.6.1.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+    <script src="js/vendors/adminlte/app.min.js"></script>
+    <script src="js/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
