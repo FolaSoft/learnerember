@@ -5,9 +5,11 @@
   <title>Ember Starter Kit</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
+  <link rel="stylesheet" href="css/vendors/adminlte/skin-blue.css">
+  <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.css">
 </head>
-<body>
+<body class="skin-blue">
 
   <script type="text/x-handlebars">
     <div class="navbar">
@@ -20,6 +22,7 @@
         </ul>
       </div>
     </div>
+   
 
     {{outlet}}
   </script>
@@ -111,8 +114,6 @@
   </script>
 
   <script type="text/x-handlebars" id="theme">
-   
-
     <h1>{{theme.name}}</h1>
     <h1>{{theme.id}}</h1>
     <h1>{{theme.cost}}</h1>
@@ -121,9 +122,8 @@
         <li>Major Incident number: {{incident.id}}, Description: {{incident.description}} Dollar Impact: {{incident.cost}} </li>
       {{/each}}
     </ul>
-    <hr>
-
-  </script>
+    </hr>
+   </script>
 
 
   <script type="text/x-handlebars" id="post/_edit">
@@ -167,6 +167,8 @@
   <script src="js/libs/ember-v1.6.1.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+  <script src="js/vendors/adminlte/app.min.js"></script>
+  <script src="js/vendors/bootstrap/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
