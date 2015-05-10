@@ -1,197 +1,137 @@
-/*! AdminLTE app.js
- * ================
- * Main JS application file for AdminLTE v2. This file
- * should be included in all pages. It controls some layout
- * options and implements exclusive AdminLTE plugins.
- *
- * @Author  Almsaeed Studio
- * @Support <http://www.almsaeedstudio.com>
- * @Email   <support@almsaeedstudio.com>
- * @version 2.0.4
- * @license MIT <http://opensource.org/licenses/MIT>
- */
-"use strict"; if ("undefined" == typeof jQuery) throw new Error("AdminLTE requires jQuery");
-$.AdminLTE = {},
-$.AdminLTE.options = {
-    navbarMenuSlimscroll: !0,
-    navbarMenuSlimscrollWidth: "3px",
-    navbarMenuHeight: "200px",
-    sidebarToggleSelector: "[data-toggle='offcanvas']",
-    sidebarPushMenu: !0,
-    sidebarSlimScroll: !0,
-    enableBoxRefresh: !0,
-    enableBSToppltip: !0,
-    BSTooltipSelector: "[data-toggle='tooltip']",
-    enableFastclick: !0,
-    enableBoxWidget: !0,
-    boxWidgetOptions: {
-        boxWidgetIcons: {
-            collapse: "fa fa-minus",
-            open: "fa fa-plus",
-            remove: "fa fa-times"
-        },
-        boxWidgetSelectors: {
-            remove: '[data-widget="remove"]',
-            collapse: '[data-widget="collapse"]'
-        }
-    },
+App = Ember.Application.create({});
 
-    directChat: {
-        enable: !0,
-        contactToggleSelector: '[data-widget="chat-pane-toggle"]'
-    },
+var posts = [{
+  id: '1',
+  title: "Rails is Omakase",
+  author: { name: "d2h" },
+  date: new Date('12-27-2012'),
+  excerpt: "There are lots of à la carte software environments in this world. Places where in order to eat, you must first carefully look over the menu of options to order exactly what you want.",
+  body: "I want this for my ORM, I want that for my template language, and let's finish it off with this routing library. Of course, you're going to have to know what you want, and you'll rarely have your horizon expanded if you always order the same thing, but there it is. It's a very popular way of consuming software.\n\nRails is not that. Rails is omakase."
+}, {
+  id: '2',
+  title: "The Parley Letter",
+  author: { name: "d2h" },
+  date: new Date('12-24-2012'),
+  excerpt: "My [appearance on the Ruby Rogues podcast](http://rubyrogues.com/056-rr-david-heinemeier-hansson/) recently came up for discussion again on the private Parley mailing list.",
+  body: "A long list of topics were raised and I took a time to ramble at large about all of them at once. Apologies for not taking the time to be more succinct, but at least each topic has a header so you can skip stuff you don't care about.\n\n### Maintainability\n\nIt's simply not true to say that I don't care about maintainability. I still work on the oldest Rails app in the world."  
+}];
 
-    colors: {
-        lightBlue: "#3c8dbc",
-        red: "#f56954",
-        green: "#00a65a",
-        aqua: "#00c0ef",
-        yellow: "#f39c12",
-        blue: "#0073b7",
-        navy: "#001F3F",
-        teal: "#39CCCC",
-        olive: "#3D9970",
-        lime: "#01FF70",
-        orange: "#FF851B",
-        fuchsia: "#F012BE",
-        purple: "#8E24AA",
-        maroon: "#D81B60",
-        black: "#222222",
-        gray: "#d2d6de"
-    },
-    screenSizes: { xs: 480, sm: 768, md: 992, lg: 1200 }
-},
 
-$(function () {
-    var a = $.AdminLTE.options;
-    $.AdminLTE.layout.activate(),
-    $.AdminLTE.tree(".sidebar"),
-    a.navbarMenuSlimscroll && "undefined" != typeof $.fn.slimscroll && $(".navbar .menu").slimscroll({ height: "200px", alwaysVisible: !1, size: "3px" }).css("width", "100%"),
-    a.sidebarPushMenu && $.AdminLTE.pushMenu(a.sidebarToggleSelector),
-    a.enableBSToppltip && $(a.BSTooltipSelector).tooltip(),
-    a.enableBoxWidget && $.AdminLTE.boxWidget.activate(),
-    a.enableFastclick && "undefined" != typeof FastClick && FastClick.attach(document.body),
-    a.directChat.enable && $(a.directChat.contactToggleSelector).click(function () {
-        var a = $(this).parents(".direct-chat").first();
-        a.toggleClass("direct-chat-contacts-open")
-    }),
-    $('.btn-group[data-toggle="btn-toggle"]').each(function () {
-        var a = $(this);
-        $(this).find(".btn").click(function (b) {
-            a.find(".btn.active").removeClass("active"),
-            $(this).addClass("active"),
-            b.preventDefault()
-        })
-    })
-}),
-$.AdminLTE.layout = {
-    activate: function () {
-        var a = this; a.fix(),
-        a.fixSidebar(),
-        $(window, ".wrapper").resize(function () {
-            a.fix(), a.fixSidebar()
-        })
-    },
-    fix: function () {
-        var a = $(".main-header").outerHeight() + $(".main-footer").outerHeight(),
-            b = $(window).height(),
-            c = $(".sidebar").height();
-        $("body").hasClass("fixed") ? $(".content-wrapper, .right-side").css("min-height",
-            b - $(".main-footer").outerHeight()) : b >= c ? $(".content-wrapper, .right-side").css("min-height", b - a) : $(".content-wrapper, .right-side").css("min-height", c)
-    },
-    fixSidebar: function () {
-        return $("body").hasClass("fixed") ? ("undefined" == typeof $.fn.slimScroll && console && console.error("Error: the fixed layout requires the slimscroll plugin!"),
-            void ($.AdminLTE.options.sidebarSlimScroll && "undefined" != typeof $.fn.slimScroll && ($(".sidebar").slimScroll({ destroy: !0 }).height("auto"),
-            $(".sidebar").slimscroll({ height: $(window).height() - $(".main-header").height() + "px", color: "rgba(0,0,0,0.2)", size: "3px" })))) : void ("undefined" != typeof $.fn.slimScroll && $(".sidebar").slimScroll({ destroy: !0 }).height("auto"))
-        }
-},
-$.AdminLTE.pushMenu = function (a) {
-    var b = this.options.screenSizes;
-    $(a).click(function (a) {
-        a.preventDefault(), $(window).width() > b.sm - 1 ? $("body").toggleClass("sidebar-collapse") : $("body").hasClass("sidebar-open") ? ($("body").removeClass("sidebar-open"), $("body").removeClass("sidebar-collapse")) : $("body").addClass("sidebar-open")
-    }),
-    $(".content-wrapper").click(function () {
-        $(window).width() <= b.sm - 1 && $("body").hasClass("sidebar-open") && $("body").removeClass("sidebar-open")
-    })
-},
-$.AdminLTE.tree = function (a) {
-    var b = this;
-    $("li a", $(a)).click(function (a) {
-        var c = $(this),
-            d = c.next();
-        if (d.is(".treeview-menu") && d.is(":visible")) d.slideUp("normal", function () { d.removeClass("menu-open") }), d.parent("li").removeClass("active"); else if (d.is(".treeview-menu") && !d.is(":visible")) { var e = c.parents("ul").first(), f = e.find("ul:visible").slideUp("normal"); f.removeClass("menu-open"); var g = c.parent("li"); d.slideDown("normal", function () { d.addClass("menu-open"), e.find("li.active").removeClass("active"), g.addClass("active"), b.layout.fix() }) } d.is(".treeview-menu") && a.preventDefault()
-    })
-},
-$.AdminLTE.boxWidget = {
-    activate: function () {
-        var a = $.AdminLTE.options,
-            b = this;
-        $(a.boxWidgetOptions.boxWidgetSelectors.collapse).click(function (a) {
-            a.preventDefault(),
-            b.collapse($(this)
-                )
-        }),
-        $(a.boxWidgetOptions.boxWidgetSelectors.remove).click(function (a) { a.preventDefault(), b.remove($(this)) })
-    },
-    collapse: function (a) {
-        var b = a.parents(".box").first(),
-            c = b.find(".box-body, .box-footer");
-        b.hasClass("collapsed-box") ? (a.children(".fa-plus").removeClass("fa-plus").addClass("fa-minus"),
-        c.slideDown(300, function () { b.removeClass("collapsed-box") })) : (a.children(".fa-minus").removeClass("fa-minus").addClass("fa-plus"),
-        c.slideUp(300, function () { b.addClass("collapsed-box") }))
-    },
-    remove: function (a) {
-        var b = a.parents(".box").first(); b.slideUp()
-    },
-    options: $.AdminLTE.options.boxWidgetOptions
-},
-function (a) { 
-    a.fn.boxRefresh = function (b) {
-        function c(a) {
-            a.append(f), e.onLoadStart.call(a)
-        }
-        function d(a) {
-            a.find(f).remove(), e.onLoadDone.call(a)
-        }
-        var e = a.extend({
-            trigger: ".refresh-btn",
-            source: "",
-            onLoadStart: function () { },
-            onLoadDone: function () { }
-        }, b),
-        f = a('<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>');
-        return this.each(function () {
-            if ("" === e.source)
-                return void (console && console.log("Please specify a source first - boxRefresh()"));
-            var b = a(this),
-                f = b.find(e.trigger).first();
-            f.click(function (a) {
-                a.preventDefault(), c(b),
-                b.find(".box-body").load(e.source, function () {
-                    d(b)
-                })
-            })
-        })
+var themes = [
+  {
+    id: '1',
+    name: "Deployment",
+    cost: "$22,000",
+  }, 
+  {
+    id: '2',
+    name: "Design",
+    cost: "$3,000",
+  },
+  {
+    id: '3',
+    name: "Testing",
+    cost: "$5,000",
+  },
+  {
+    id: '4',
+    name: "Capacity",
+    cost: "$6,000",
+  },
+  {
+    id: '5',
+    name: "Monitoring",
+    cost: "$2,000",
+  },
+  {
+    id: '6',
+    name: "Unknown",
+    cost: "$12,000",
+  }
+];
+
+var incidents = [
+  { 
+    id: '1',
+    description: "incident1",
+    cost: "$1000",
+    iscompliant: 'yes',
+    themeId: "1"
+  },
+  { 
+    id: '2',
+    description: "incident2",
+    cost: "$4000",
+    iscompliant: 'yes',
+    themeId: "1"
+  },
+  { 
+    id: '3',
+    description: "incident3",
+    cost: "$2000",
+    iscompliant: 'yes',
+    themeId: "3"
+  }
+];
+
+App.Router.map(function() {
+  this.resource('themes', function() {
+    this.resource('theme', { path: ':theme_id' });
+  });
+  this.resource('about');
+  this.resource('posts', function() {
+    this.resource('post', { path: ':post_id' });
+  });
+});
+
+App.PostsRoute = Ember.Route.extend({
+  model: function() {
+    return posts;
+  }
+});
+
+App.PostRoute = Ember.Route.extend({
+  model: function(params) {
+    return posts.findBy('id', params.post_id);
+  }
+});
+
+App.ThemesRoute = Ember.Route.extend({
+  model: function() {
+    return themes;
+  }
+});
+
+App.ThemeRoute = Ember.Route.extend({
+  model: function(params) {
+    var data = { 
+      theme: themes.findBy('id', params.theme_id),
+      incidents: incidents.filterBy('themeId', params.theme_id)
     }
-}
+    return data;
+  }
+});
 
-(jQuery), function (a) {
-    a.fn.todolist = function (b) {
-        var c = a.extend({ onCheck: function () { }, onUncheck: function () { } }, b);
-        return this.each(function () {
-            "undefined" != typeof a.fn.iCheck ? (a("input", this).on("ifChecked", function () {
-                var b = a(this).parents("li").first();
-                b.toggleClass("done"),
-                c.onCheck.call(b)
-            }),
-            a("input", this).on("ifUnchecked", function () {
-                var b = a(this).parents("li").first();
-                b.toggleClass("done"), 
-                c.onUncheck.call(b)
-            })) : a("input", this).on("change", function () {
-                var b = a(this).parents("li").first();
-                b.toggleClass("done"), c.onCheck.call(b)
-            })
-        })
+App.PostController = Ember.ObjectController.extend({
+  isEditing: false,
+  
+  actions: {
+    edit: function() {
+      this.set('isEditing', true);
+    },
+
+    doneEditing: function() {
+      this.set('isEditing', false);
     }
-}(jQuery);
+  }
+});
+
+var showdown = new Showdown.converter();
+
+Ember.Handlebars.helper('format-markdown', function(input) {
+  return new Handlebars.SafeString(showdown.makeHtml(input));
+});
+
+Ember.Handlebars.helper('format-date', function(date) {
+  return moment(date).fromNow();
+});
