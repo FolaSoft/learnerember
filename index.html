@@ -72,8 +72,7 @@
                 <small>what you need to know</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Dashboard</a></li>
+                <li>{{#link-to}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
             </ol>
         </section>
 
@@ -212,9 +211,8 @@
                 <small>what you need to know</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Themes by dollar impact</a></li>
+                <li>{{#link-to 'themes'}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
+                <li>{{#link-to 'theme' this.id}}Themes by dollar impact{{/link-to}}</li>
             </ol>
 
             <!-- Main content -->
