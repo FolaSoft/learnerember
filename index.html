@@ -29,6 +29,7 @@
         </header>
         {{outlet}}
     </script>
+
     <script type="text/x-handlebars" id="posts">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -61,7 +62,6 @@
                 {{outlet}}
             </div>
         </div>
-
     </script>
 
     <script type="text/x-handlebars" id="themes/index">
@@ -81,8 +81,7 @@
             <div class="row">
                 <!-- Left col -->
                 <div class="col-md-6">
-                    <!-- MAP & BOX PANE -->
-                    <!-- Bar chart -->
+                    <!-- Left handside Pie Chart -->
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">US Dollars by Theme</h3>
@@ -98,16 +97,13 @@
                                         <li><a href="#">My notes on this...</a></li>
                                     </ul>
                                 </div>
-                                <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
                             </div>
-
                         </div>
                         <div class="box-body">
                             <div class="chart-responsive">
-                                <canvas id="pieChart" height="150"></canvas>
-                                <div><div id="chart2"></div></div>
-                                <p id="canvas_size2"></p>
-                            </div><!-- ./chart-responsive -->
+                                <div id="gopiechart" style="width: 500px; height: 400px"></div>
+                            </div>
+                            <!-- ./chart-responsive -->
                         </div><!-- /.box-body-->
                         <div class="box-footer no-padding">
                             <ul class="nav nav-pills nav-stacked">
@@ -120,7 +116,7 @@
                 </div><!-- /.col -->
 
                 <div class="col-md-6">
-                    <!-- Info Boxes Style 2 -->
+                    <!-- Right handside Pie Chart -->
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">
@@ -128,35 +124,20 @@
                             </h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-
-                            <div>
-                                <div class="chart-responsive">
-                                    <canvas id="pieChart" height="150"></canvas>
-                                    <div id="chart"></div>
-                                    <p id="canvas_size"></p>
-                                </div><!-- ./chart-responsive -->
-                            </div><!-- /.col -->
-                            <!-- /.col -->
-
                         </div><!-- /.box-body -->
                         <div class="box-footer no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Design Flaws <span class="pull-right">15 incidents</span></a></li>
-                                <li><a href="#"><i class="fa fa-circle-o text-green"></i>Monitoring Deficiency<span class="pull-right">15 incidents</span></a></li>
-                                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Capacity <span class="pull-right">20 incidents</span></a></li>
-                                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>Insufficient Testing<span class="pull-right">10 incidents</span></a></li>
-                                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>Deployment<span class="pull-right">30 incidents</span></a></li>
-                                <li><a href="#"><i class="fa fa-circle-o text-gray"></i>Unknown<span class="pull-right">20 incidents</span></a></li>
+                                <li><p> hello</p></li>
                             </ul>
                         </div><!-- /.footer -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
-            <!-- Apple to Apple Chart-->
+
+            <!-- Line Chart Area -->
             <div class="row">
                 <div class="col-xs-12">
                     <!-- interactive chart -->
@@ -176,12 +157,9 @@
                             <div id="line-chart" style="height: 300px;"></div>
                         </div><!-- /.box-body-->
                     </div><!-- /.box -->
-
                 </div><!-- /.col -->
             </div><!-- /.row -->
-        </section>
-
-
+        </section><!-- /.section-->
     </script>
     <script type="text/x-handlebars" id="posts/index">
         <p class="text-warning">Please select a post</p>
@@ -210,92 +188,52 @@
                 Major Incidents
                 <small>what you need to know</small>
             </h1>
+
             <ol class="breadcrumb">
                 <li>{{#link-to 'themes'}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
                 <li>{{#link-to 'theme' this.id}}Themes by dollar impact{{/link-to}}</li>
             </ol>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <div class="info-box bg-aqua">
-                                    <span class="info-box-icon"><i class="ion-social-usd"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Design Flaws</span>
-                                        <span class="info-box-number">$150,000</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 100%"></div>
-                                        </div>
-                                        <span class="progress-description">
-                                            Incdents in this category make up 30% of all financial impact in the month
-                                        </span>
-                                    </div><!-- /.info-box-content -->
-                                </div><!-- /.info-box -->
-                            </div><!-- /.box-header -->
-                            <!-- form start -->
-
-                            <form role="form">
-                                <div class="box-body">
-
-                                    <div class="form-group">
-                                        <div class="box box-primary collapsed-box box-solid">
-                                            <div class="box-header">
-                                                <h3 class="box-title">IM3454334: Lync Server Outage</h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
-                                                    <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 60,000</span>
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p><h5><b>Major impacting events in last 12 months</h5></b></p>
-                                                <blockquote>
-
-                                                    <p>None</p>
-                                                    <footer>A legacy IT system.<cite title="Source Title">Targeted for Sunsent</cite></footer>
-                                                </blockquote>
-                                                <dl>
-                                                    <dt>Past commitments @ risk</dt>
-                                                    <dd>
-                                                        <p><h4><span class="label label-primary"> No</span></h4></p>
-
-
-                                                    </dd>
-                                                </dl>
-                                                <p><h5><b>Past Identified Themes </h5></b></p>
-                                                <blockquote>
-
-                                                    <p>Redundancy Gaps</p>
-                                                    <footer>Previously identified <cite title="Source Title"> 1 out of every 4 incidents belongs to category</cite></footer>
-                                                </blockquote>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
-
-
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="ion-social-usd"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">{{theme.name}} </span>
+                                    <span class="info-box-number">{{theme.cost}}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%"></div>
                                     </div>
-
-                                    <div class="box box-primary box-solid">
+                                    <span class="progress-description">
+                                        Incdents in this category make up 30% of all financial impact in the month
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                {{#each incident in incidents}}
+                                <div class="form-group">
+                                    <div class="box box-primary collapsed-box box-solid">
                                         <div class="box-header">
-                                            <h3 class="box-title">IM3454334: Exchange Server Outage down</h3>
-                                            <!--<div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            </div>-->
+                                            <h3 class="box-title"> {{incident.description}}</h3>
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
-                                                <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 40,000</span>
+                                                <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>{{incident.cost}}</span>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div><!-- /.box-tools -->
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
-                                            <p><h5><b>What happened </h5></b></p>
+                                            <p><h5>What happened </h5></p>
                                             <blockquote>
-
-                                                <p>On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue</p>
+                                                <p>{{incident.fullDescription}}</p>
                                                 <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
                                             </blockquote>
                                             <dl>
@@ -305,17 +243,12 @@
                                                         <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
                                                         <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
                                                         <li><h4><span class="label label-primary"> ECIT</span></h4></li>
-
-
                                                     </ul>
                                                 </dd>
                                             </dl>
                                             <p><h5><b>What is the business impact</h5></b></p>
                                             <blockquote>
-
-                                                <p>
-                                                    The IMS system stopped routing customer and internal partner submitted support requests, impacting over 1.5k users. (Ad Support Search, adshelp - Display (AMPS), API, CPSS, Global Publisher Support Tier 2,  etc.)
-                                                </p>
+                                                <p>{{incident.bussinessImpact}}</p>
                                                 <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
                                             </blockquote>
                                             <div class="box-group" id="accordion">
@@ -353,490 +286,40 @@
                                                 </div>
                                             </div>
                                         </div><!-- /.box-body -->
+                                        <!-- /.box-body -->
                                     </div><!-- /.box -->
+                                </div>
+                                ajor Incident n
+                                umber: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}}-->
+                                {{/each}}
 
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- TABLE: Open Comitments -->
-                                            <div class="box box-primary box-solid">
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">IM3453334: Xbox Server Outage</h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
-                                                        <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 30,000</span>
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                    </div>
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ID</th>
-                                                                    <th>What</th>
-                                                                    <th>Who</th>
-                                                                    <th>By When</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><a href="#">MI0002128</a></td>
-                                                                    <td>MIMOS FY14Q3 Period</td>
-                                                                    <td>
-                                                                        Kevin Lin
-
-                                                                    </td>
-                                                                    <td>
-                                                                        Q3 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0003456</a></td>
-                                                                    <td>XRetunrs website</td>
-                                                                    <td>
-                                                                        Azharuddin Mohammed
-                                                                    </td>
-                                                                    <td>
-                                                                        Q4 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0004567</a></td>
-                                                                    <td>Exchange service used to host email data</td>
-                                                                    <td>
-                                                                        Kevin Spacey
-                                                                    </td>
-                                                                    <td>
-                                                                        Q4 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0005678</a></td>
-                                                                    <td>MSExpense and MS Vendor Site</td>
-                                                                    <td>
-                                                                        Sean Connery
-                                                                    </td>
-                                                                    <td>
-                                                                        Q2 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008515</a></td>
-                                                                    <td>Reverse Logistics (RL) database</td>
-                                                                    <td>
-                                                                        Jackie Chan
-                                                                    </td>
-                                                                    <td>
-                                                                        Q1 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008723</a></td>
-                                                                    <td>Lync communications for business</td>
-                                                                    <td>
-                                                                        Demi Moore
-                                                                    </td>
-                                                                    <td>
-                                                                        Q3 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0009812</a></td>
-                                                                    <td>ICOE message queueing service</td>
-                                                                    <td>
-                                                                        Ipanema Girl
-                                                                    </td>
-                                                                    <td>
-                                                                        Q2 FY16
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div><!-- /.table-responsive -->
-                                                </div><!-- /.box-body -->
-
-                                            </div><!-- /.box -->
-                                        </div><!-- /.col -->
-
-                                    </div><!-- /.row -->
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- TABLE: Open Comitments -->
-                                            <div class="box box-primary box-solid">
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">IM45653334: Windows Server Outage</h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
-                                                        <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>$ 20,000</span>
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                    </div>
-
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ID</th>
-                                                                    <th>What</th>
-                                                                    <th>Who</th>
-                                                                    <th>By When</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><a href="#">MI0002128</a></td>
-                                                                    <td>MIMOS FY14Q3 Period</td>
-                                                                    <td>
-                                                                        Kevin Lin
-
-                                                                    </td>
-                                                                    <td>
-                                                                        Q3 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0003456</a></td>
-                                                                    <td>XRetunrs website</td>
-                                                                    <td>
-                                                                        Azharuddin Mohammed
-                                                                    </td>
-                                                                    <td>
-                                                                        Q4 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0004567</a></td>
-                                                                    <td>Exchange service used to host email data</td>
-                                                                    <td>
-                                                                        Kevin Spacey
-                                                                    </td>
-                                                                    <td>
-                                                                        Q4 FY15
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0005678</a></td>
-                                                                    <td>MSExpense and MS Vendor Site</td>
-                                                                    <td>
-                                                                        Sean Connery
-                                                                    </td>
-                                                                    <td>
-                                                                        Q2 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008515</a></td>
-                                                                    <td>Reverse Logistics (RL) database</td>
-                                                                    <td>
-                                                                        Jackie Chan
-                                                                    </td>
-                                                                    <td>
-                                                                        Q1 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008723</a></td>
-                                                                    <td>Lync communications for business</td>
-                                                                    <td>
-                                                                        Demi Moore
-                                                                    </td>
-                                                                    <td>
-                                                                        Q3 FY16
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0009812</a></td>
-                                                                    <td>ICOE message queueing service</td>
-                                                                    <td>
-                                                                        Ipanema Girl
-                                                                    </td>
-                                                                    <td>
-                                                                        Q2 FY16
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div><!-- /.table-responsive -->
-                                                </div><!-- /.box-body -->
-
-                                            </div><!-- /.box -->
-                                        </div><!-- /.col -->
-
-                                    </div><!-- /.row -->
-                                </div><!-- /.box-body -->
 
 
-                            </form>
 
-                        </div><!-- /.box -->
+                                
 
-
-                    </div>   <!-- /.row -->
-                </div>
-
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <h3 class="box-title">IM3454334: Exchange Server Outage</h3>
-                            </div><!-- /.box-header -->
-                            <!-- form start -->
-
-                            <form role="form">
-                                <div class="box-body">
-
-                                    <div class="form-group">
-                                        <div class="box box-primary collapsed-box box-solid">
-                                            <div class="box-header">
-                                                <h3 class="box-title">History</h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p><h5><b>Major impacting events in last 12 months</h5></b></p>
-                                                <blockquote>
-
-                                                    <p>None</p>
-                                                    <footer>A legacy IT system.<cite title="Source Title">Targeted for Sunsent</cite></footer>
-                                                </blockquote>
-                                                <dl>
-                                                    <dt>Past commitments @ risk</dt>
-                                                    <dd>
-                                                        <p><h4><span class="label label-primary"> No</span></h4></p>
+                                  </div><!-- /.box-bod
 
 
-                                                    </dd>
-                                                </dl>
-                                                <p><h5><b>Past Identified Themes </h5></b></p>
-                                                <blockquote>
-
-                                                    <p>Redundancy Gaps</p>
-                                                    <footer>Previously identified <cite title="Source Title"> 1 out of every 4 incidents belongs to category</cite></footer>
-                                                </blockquote>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
 
 
-                                    </div>
 
-                                    <div class="box box-primary box-solid">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Present</h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p><h5><b>What happened </h5></b></p>
-                                            <blockquote>
-
-                                                <p>On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue</p>
-                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
-                                            </blockquote>
-                                            <dl>
-                                                <dt>What teams are accountable</dt>
-                                                <dd>
-                                                    <ul class="list-unstyled">
-                                                        <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
-                                                        <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
-                                                        <li><h4><span class="label label-primary"> ECIT</span></h4></li>
+                            </div><!-- /.box-body -->
 
 
-                                                    </ul>
-                                                </dd>
-                                            </dl>
-                                            <p><h5><b>What is the business impact</h5></b></p>
-                                            <blockquote>
+                        </form>
 
-                                                <p>
-                                                    The IMS system stopped routing customer and internal partner submitted support requests, impacting over 1.5k users. (Ad Support Search, adshelp - Display (AMPS), API, CPSS, Global Publisher Support Tier 2,  etc.)
-                                                </p>
-                                                <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
-                                            </blockquote>
-                                            <div class="box-group" id="accordion">
-                                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                                <div class="panel box box-primary">
-                                                    <div class="box-header with-border">
-                                                        <h4 class="box-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                                Root Cause and Classifications
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne" class="panel-collapse collapse">
-                                                        <div class="box-body">
-                                                            <p><h5><b>What is the root cause </h5></b></p>
-                                                            <blockquote>
-
-                                                                <p>
-                                                                    The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
-                                                                </p>
-                                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
-                                                            </blockquote>
-                                                            <dl>
-                                                                <dt>Root Cause Category</dt>
-                                                                <dd>
-                                                                    <large class="label label-primary label-lg"> Service Redundancy Design </large>
+                    </div><!-- /.box -->
 
 
-                                                                </dd>
-                                                            </dl>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
+                </div>   <!-- /.row -->
+            </div>
 
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- TABLE: Open Comitments -->
-                                            <div class="box box-primary box-solid">
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">Future</h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-
-                                                    </div>
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ID</th>
-                                                                    <th>Description</th>
-                                                                    <th>Progress</th>
-                                                                    <th>Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><a href="#">MI0002128</a></td>
-                                                                    <td>MIMOS FY14Q3 Period</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-green" style="width: 90%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-green"><b> 90%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0003456</a></td>
-                                                                    <td>XRetunrs website</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-red" style="width: 50%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-red"><b> 50%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0004567</a></td>
-                                                                    <td>Exchange service used to host email data</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-yellow" style="width: 55%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-yellow"><b> 55%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0005678</a></td>
-                                                                    <td>MSExpense and MS Vendor Site</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-green" style="width: 95%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-green"><b> 95%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008515</a></td>
-                                                                    <td>Reverse Logistics (RL) database</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-red" style="width: 10%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-red"><b> 10%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0008723</a></td>
-                                                                    <td>Lync communications for business</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-green" style="width: 85%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="text-green"><b> 85%</b></span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><a href="#">MI0009812</a></td>
-                                                                    <td>ICOE message queueing service</td>
-                                                                    <td>
-                                                                        <div class="progress progress-xs">
-                                                                            <div class="progress-bar progress-bar-yellow" style="width: 65%"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="text-yellow"><b> 65%</b></p>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div><!-- /.table-responsive -->
-                                                </div><!-- /.box-body -->
-
-                                            </div><!-- /.box -->
-                                        </div><!-- /.col -->
-
-                                    </div><!-- /.row -->
-
-                                </div><!-- /.box-body -->
+        </section><!-- /.content -->
 
 
-                            </form>
-
-                        </div><!-- /.box -->
-
-
-                    </div>   <!-- /.row -->
-                </div>
-            </section><!-- /.content -->
-        </section>
-
-        <section class="content">
-            <!--<h1>{{theme.name}}</h1>
-            <h1>{{theme.id}}</h1>
-            <h1>{{theme.cost}}</h1>-->
-            <ul>
-                {{#each incident in incidents}}
-                <li>Major Incident number: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}} </li>
-                {{/each}}
-            </ul>
-
-        </section>
     </script>
 
     <script type="text/x-handlebars" id="post/_edit">
@@ -875,5 +358,71 @@
     <script src="js/vendors/adminlte/app.min.js"></script>
     <script src="js/vendors/bootstrap/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            //var data = google.visualization.arrayToDataTable([
+            //  ['Themes', 'Dollar Impact (in millions)'],
+            //  ['Design Flaws', 13], ['Monitoring', 83], ['Capacity', 14],
+            //  ['Deployment', 23], ['Testing', 46]
+            //]);
+
+            // ------- Version 1------------
+            // Add rows + data at the same time
+            // -----------------------------
+            var data = new google.visualization.DataTable();
+
+            // Declare columns
+            data.addColumn('string', 'Themes');
+            data.addColumn('number', 'Dollar Impact in millions');
+
+            // Add data.
+            data.addRows([
+              ['Design', { v: 22500, f: '22,500' }], // Format as "22,500"
+              ['Monitoring', { v: 35000, f: '35,000' }],
+              ['Capacity', { v: 44000, f: '44,000' }],
+              ['Testing', { v: 27000, f: '27,000' }],
+              ['Deploy', { v: 92000, f: '92,000' }],
+              ['People', { v: 18500, f: '18,500' }]
+            ],
+          false);
+
+            var options = {
+                pieHole: 0.4,
+                legend: 'none',
+                pieSliceText: 'label',
+                slices: {
+                    4: { offset: 0.03 },
+                    3: { offset: 0.01 },
+                    2: { offset: 0.01 },
+                    1: { offset: 0.01 },
+
+                },
+            };
+
+            // The select handler. Call the chart's getSelection() method
+            function selectHandler() {
+                var selectedItem = chart.getSelection()[0];
+                if (selectedItem) {
+                    var value = data.getValue(selectedItem.row, 0);
+                    alert('The user selected ' + value);
+                }
+            }
+
+
+
+            var chart = new google.visualization.PieChart(document.getElementById('gopiechart'));
+            chart.draw(data, options);
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+
+        }
+    </script>
+
+
+
 </body>
 </html>
