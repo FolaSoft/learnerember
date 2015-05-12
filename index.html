@@ -66,10 +66,11 @@
 
     <script type="text/x-handlebars" id="themes/index">
         <!-- Content Header (Page header) -->
+
         <section class="content-header">
             <h1>
                 Major Incidents
-                <small>what you need to know</small>
+                <small>what you need to know</small> 
             </h1>
             <ol class="breadcrumb">
                 <li>{{#link-to}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
@@ -79,24 +80,14 @@
         <section class="content">
             <!-- Apple to Apple Chart-->
             <div class="row">
-                <!-- Left col -->
                 <div class="col-md-6">
                     <!-- Left handside Pie Chart -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">US Dollars by Theme</h3>
+                            <h3 class="box-title">Incidents by Themes</h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <div class="btn-group">
-                                    <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Alert Owner</a></li>
-                                        <li><a href="#">Alert Team</a></li>
-                                        <li><a href="#">Require Deep Dive</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">My notes on this...</a></li>
-                                    </ul>
-                                </div>
+                           
                             </div>
                         </div>
                         <div class="box-body">
@@ -108,19 +99,18 @@
                         <div class="box-footer no-padding">
                             <ul class="nav nav-pills nav-stacked">
                                 {{#each model}}
-                                <li>{{#link-to 'theme' this.id}}<i class="fa fa-chevron-right"></i>{{name}} <span class="pull-right text-aqua">{{cost}}</span>{{/link-to}}</li>
+                                <li>{{#link-to 'theme' this.id}}<i class="fa fa-chevron-right"></i>{{name}} <span class="pull-right text-aqua">{{description}}</span>{{/link-to}}</li>
                                 {{/each}}
                             </ul>
                         </div><!-- /.footer -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
-
                 <div class="col-md-6">
                     <!-- Right handside Pie Chart -->
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">
-                                Quantity by Theme
+                                Recommended Incidents by Themes/Subject
                             </h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -130,37 +120,128 @@
                         </div><!-- /.box-body -->
                         <div class="box-footer no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><p> hello</p></li>
+                                {{#each model}}
+                                <li>{{#link-to 'frequency' this.id}}<i class="fa fa-chevron-right"></i>{{name}} <span class="pull-right text-aqua">{{cost}}</span>{{/link-to}}</li>
+                                {{/each}}
                             </ul>
+                      
                         </div><!-- /.footer -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
-
-            <!-- Line Chart Area -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- interactive chart -->
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <i class="fa fa-bar-chart-o"></i>
-                            <h3 class="box-title">6 Months Incident Volume</h3>
-                            <div class="box-tools pull-right">
-                                Real time
-                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                                    <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On</button>
-                                    <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <div id="line-chart" style="height: 300px;"></div>
-                        </div><!-- /.box-body-->
-                    </div><!-- /.box -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+          
         </section><!-- /.section-->
     </script>
+    <script type="text/x-handlebars" id="frequency">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Major Incidents
+                <small>what you need to know</small> I am in frequency baby
+            </h1>
+            <ol class="breadcrumb">
+                <li>{{#link-to}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
+            </ol>
+        </section>
+  
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="ion-social-usd"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">{{theme.name}} </span>
+                                    <span class="info-box-number">{{theme.cost}}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        Incdents in this category make up 30% of all financial impact in the month
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            {{#each incident in incidents}}
+                            <div class="form-group">
+                                <div class="box box-primary collapsed-box box-solid">
+                                    <div class="box-header">
+                                        <h3 class="box-title"> {{incident.description}}</h3>
+                                        <div class="box-tools pull-right">
+                                            <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                            <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>{{incident.cost}}</span>
+                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div><!-- /.box-tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <p><h5>What happened </h5></p>
+                                        <blockquote>
+                                            <p>{{incident.fullDescription}}</p>
+                                            <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                        </blockquote>
+                                        <dl>
+                                            <dt>What teams are accountable</dt>
+                                            <dd>
+                                                <ul class="list-unstyled">
+                                                    <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
+                                                    <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                    <li><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <p><h5><b>What is the business impact</h5></b></p>
+                                        <blockquote>
+                                            <p>{{incident.bussinessImpact}}</p>
+                                            <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
+                                        </blockquote>
+                                        <div class="box-group" id="accordion">
+                                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                            <div class="panel box box-primary">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                            Root Cause and Classifications
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse">
+                                                    <div class="box-body">
+                                                        <p><h5><b>What is the root cause </h5></b></p>
+                                                        <blockquote>
+                                                            <p>
+                                                                The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
+                                                            </p>
+                                                            <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                                        </blockquote>
+                                                        <dl>
+                                                            <dt>Root Cause Category</dt>
+                                                            <dd>
+                                                                <ul class="list-unstyled">
+                                                                    <li><h4><span class="label label-primary"> Service Redundacy Gap</span></h4></li>
+                                                                </ul>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div><!-- /.box -->
+                </div>   <!-- /.row -->
+            </div>
+        </section><!-- /.content -->
+    </script>
+
     <script type="text/x-handlebars" id="posts/index">
         <p class="text-warning">Please select a post</p>
     </script>
@@ -182,11 +263,12 @@
         </div>
     </script>
     <script type="text/x-handlebars" id="theme">
+        <!-- this is themes.index-->
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Major Incidents
-                <small>what you need to know</small>
+                <small>what you need to know</small> 
             </h1>
 
             <ol class="breadcrumb">
@@ -216,110 +298,80 @@
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->
                         </div><!-- /.box-header -->
-                        <!-- form start -->
-                        <form role="form">
-                            <div class="box-body">
-                                {{#each incident in incidents}}
-                                <div class="form-group">
-                                    <div class="box box-primary collapsed-box box-solid">
-                                        <div class="box-header">
-                                            <h3 class="box-title"> {{incident.description}}</h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
-                                                <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>{{incident.cost}}</span>
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p><h5>What happened </h5></p>
-                                            <blockquote>
-                                                <p>{{incident.fullDescription}}</p>
-                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
-                                            </blockquote>
-                                            <dl>
-                                                <dt>What teams are accountable</dt>
-                                                <dd>
-                                                    <ul class="list-unstyled">
-                                                        <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
-                                                        <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
-                                                        <li><h4><span class="label label-primary"> ECIT</span></h4></li>
-                                                    </ul>
-                                                </dd>
-                                            </dl>
-                                            <p><h5><b>What is the business impact</h5></b></p>
-                                            <blockquote>
-                                                <p>{{incident.bussinessImpact}}</p>
-                                                <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
-                                            </blockquote>
-                                            <div class="box-group" id="accordion">
-                                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                                <div class="panel box box-primary">
-                                                    <div class="box-header with-border">
-                                                        <h4 class="box-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                                Root Cause and Classifications
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne" class="panel-collapse collapse">
-                                                        <div class="box-body">
-                                                            <p><h5><b>What is the root cause </h5></b></p>
-                                                            <blockquote>
-
-                                                                <p>
-                                                                    The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
-                                                                </p>
-                                                                <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
-                                                            </blockquote>
-                                                            <dl>
-                                                                <dt>Root Cause Category</dt>
-                                                                <dd>
-                                                                    <ul class="list-unstyled">
-                                                                        <li><h4><span class="label label-primary"> Service Redundacy Gap</span></h4></li>
-                                                                    </ul>
-
-                                                                </dd>
-                                                            </dl>
-
-                                                        </div>
+                        <div class="box-body">
+                            {{#each incident in incidents}}
+                            <div class="form-group">
+                                <div class="box box-primary collapsed-box box-solid">
+                                    <div class="box-header">
+                                        <h3 class="box-title"> {{incident.description}}</h3>
+                                        <div class="box-tools pull-right">
+                                            <button class="btn btn-box-tool" data-toggle="tooltip" title="Go to Incident"><i class="fa fa-share"></i></button>
+                                            <span data-toggle="tooltip" title="Shortlisted" class='label label-info'>{{incident.cost}}</span>
+                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div><!-- /.box-tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <p><h5>What happened </h5></p>
+                                        <blockquote>
+                                            <p>{{incident.fullDescription}}</p>
+                                            <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                        </blockquote>
+                                        <dl>
+                                            <dt>What teams are accountable</dt>
+                                            <dd>
+                                                <ul class="list-unstyled">
+                                                    <li><h4><span class="label label-primary"> SESIT SE - Dynamics MIMOS</span></h4></li>
+                                                    <li><h4><span class="label label-primary"> ECIT</span></h4><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                    <li><h4><span class="label label-primary"> ECIT</span></h4></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <p><h5><b>What is the business impact</h5></b></p>
+                                        <blockquote>
+                                            <p>{{incident.bussinessImpact}}</p>
+                                            <footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>
+                                        </blockquote>
+                                        <div class="box-group" id="accordion">
+                                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                            <div class="panel box box-primary">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                            Root Cause and Classifications
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse">
+                                                    <div class="box-body">
+                                                        <p><h5><b>What is the root cause </h5></b></p>
+                                                        <blockquote>
+                                                            <p>
+                                                                The drop in service health could have been automatically detected and the system switched to use one of the backup servers before there was customer impact. Additionally, the lack of alerting meant that the Escalation Management team wasn’t contacted until the issue had been impacting customers for over 11h, and monitoring improvements/instrumentation/tooling would have enabled the responding engineers to identify the database as the source of the problem more quickly.
+                                                            </p>
+                                                            <footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>
+                                                        </blockquote>
+                                                        <dl>
+                                                            <dt>Root Cause Category</dt>
+                                                            <dd>
+                                                                <ul class="list-unstyled">
+                                                                    <li><h4><span class="label label-primary"> Service Redundacy Gap</span></h4></li>
+                                                                </ul>
+                                                            </dd>
+                                                        </dl>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><!-- /.box-body -->
-                                        <!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-                                ajor Incident n
-                                umber: {{incident.id}}, Description: {{incident.description}}gg Dollar Impact: {{incident.cost}}-->
-                                {{/each}}
-
-
-
-
-
-                                
-
-                                  </div><!-- /.box-bod
-
-
-
-
-
-                            </div><!-- /.box-body -->
-
-
-                        </form>
-
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            {{/each}}
+                        </div>
                     </div><!-- /.box -->
-
-
                 </div>   <!-- /.row -->
             </div>
-
-
         </section><!-- /.content -->
-
-
     </script>
 
     <script type="text/x-handlebars" id="post/_edit">
@@ -382,12 +434,11 @@
 
             // Add data.
             data.addRows([
-              ['Design', { v: 22500, f: '22,500' }], // Format as "22,500"
-              ['Monitoring', { v: 35000, f: '35,000' }],
-              ['Capacity', { v: 44000, f: '44,000' }],
-              ['Testing', { v: 27000, f: '27,000' }],
-              ['Deploy', { v: 92000, f: '92,000' }],
-              ['People', { v: 18500, f: '18,500' }]
+              ['Azure', 4], // Format as "22,500"
+              ['Platform', 1],
+              ['Excahnge', 1],
+              ['CRM Online', 1]
+             
             ],
           false);
 

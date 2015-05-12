@@ -1,4 +1,6 @@
-App = Ember.Application.create({});
+App = Ember.Application.create({
+    LOG_TRANSITIONS: true
+});
 
 var posts = [{
     id: '1',
@@ -20,34 +22,30 @@ var posts = [{
 var themes = [
   {
       id: '1',
-      name: "Deployment",
+      name: "Azure",
       cost: "$11,000", //change to computed property from incidents data
+      description: "Revenue & Brand",
+
   },
   {
       id: '2',
-      name: "Design",
+      name: "Platform Specific",
       cost: "$12,000",
+      description: "External Customer",
   },
   {
       id: '3',
-      name: "Testing",
+      name: "Exchange",
       cost: "$6,000",
+      description: "23,000 Internal Users",
   },
   {
       id: '4',
-      name: "Capacity",
+      name: "Dynamic CRM Online",
       cost: "$9,500",
+      description: "External & Sales Impact",
   },
-  {
-      id: '5',
-      name: "Monitoring",
-      cost: "$1,500",
-  },
-  {
-      id: '6',
-      name: "People",
-      cost: "$5,000",
-  }
+ 
 ];
 
 var incidents = [
@@ -186,15 +184,13 @@ var incidents = [
 App.Router.map(function () {
     this.resource('themes', function () {
         this.resource('theme', { path: ':theme_id' });
-
-
-    });
+        this.resource('frequency', {path: ':frequency_id'});
+        });
+        
     this.resource('about');
     this.resource('posts', function () {
         this.resource('post', { path: ':post_id' });
-
     });
-
 });
 
 
@@ -219,6 +215,19 @@ App.ThemesRoute = Ember.Route.extend({
     }
 });
 
+//App.FrequencyRoute = Ember.Route.extend({
+//    model: function () {
+//        return themes;
+//    }
+//});
+
+//App.ThemeShowRoute = Ember.Route.extend({
+//    renderTemplate: function () {
+//        this.render('theme.show');
+//    }
+//});
+
+
 App.ThemeRoute = Ember.Route.extend({
     model: function (params) {
         var data = {
@@ -229,7 +238,23 @@ App.ThemeRoute = Ember.Route.extend({
     }
 });
 
+App.FrequencyRoute = Ember.Route.extend({
+    model: function (params) {
+        var data = {
+            theme: themes.findBy('id', params.frequency_id),
+            incidents: incidents.filterBy('frequencyId', params.theme_id)
+        }
+        return data;
+    }
+});
 App.ThemeView = Ember.View.extend({
+    didInsertElement: function () {
+        $.AdminLTE.boxWidget.activate();
+        //$('#')
+    }
+});
+
+App.ThemesView = Ember.View.extend({
     didInsertElement: function () {
         $.AdminLTE.boxWidget.activate();
         //$('#')
@@ -250,6 +275,8 @@ App.PostController = Ember.ObjectController.extend({
     }
 });
 
+    
+//});
 var showdown = new Showdown.converter();
 
 Ember.Handlebars.helper('format-markdown', function (input) {
