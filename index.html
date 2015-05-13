@@ -367,21 +367,21 @@
                 },
             };
 
-            // The select handler. Call the chart's getSelection() method
-            function selectHandler() {
-                var selectedItem = chart.getSelection()[0];
-                if (selectedItem) {
-                    var value = data.getValue(selectedItem.row, 0);
-                    alert('The user selected ' + value);
-                }
-            }
+            //// The select handler. Call the chart's getSelection() method
+            //function selectHandler() {
+            //    var selectedItem = chart.getSelection()[0];
+            //    if (selectedItem) {
+            //        var value = data.getValue(selectedItem.row, 0);
+            //        alert('The user selected ' + value);
+            //    }
+            //}
 
 
             var gopie = document.getElementById('gopiechart');
             console.log('this is in drawchart is gopie', gopie);
             var chart = new google.visualization.PieChart(gopie); //document.getElementById('gopiechart'));
             chart.draw(data, options);
-            google.visualization.events.addListener(chart, 'select', selectHandler);
+            //google.visualization.events.addListener(chart, 'select', selectHandler);
 
         }
     </script>

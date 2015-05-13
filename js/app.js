@@ -237,7 +237,7 @@ App.Router.map(function () {
         this.resource('theme', { path: ':theme_id' });
       
     });
-    this.resource('recommendations');
+ 
         
     this.resource('about');
     this.resource('posts', function () {
