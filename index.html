@@ -84,11 +84,8 @@
                     <!-- Left handside Pie Chart -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Incidents by Themes</h3>
-                            <div class="box-tools pull-right">
-                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                           
-                            </div>
+                            <h3 class="box-title">Themes</h3>
+                          
                         </div>
                         <div class="box-body">
                             <div class="chart-responsive">
@@ -110,29 +107,77 @@
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">
-                                Recommended Incidents by Themes/Subject
+                                Recommended Themes & Subject
                             </h3>
-                            <div class="box-tools pull-right">
-                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            </div>
+                          
                         </div><!-- /.box-header -->
                         <div class="box-body">
 
-                        </div><!-- /.box-body -->
-                        <div class="box-footer no-padding">
-                            <ul class="nav nav-pills nav-stacked">
-                               
-                                {{#each}}
-                             {{#if show}}
-                                    <li>
-                                        {{#link-to 'theme' this.id}}<i class="fa fa-chevron-right"></i>{{name}} <span class="pull-right text-aqua">{{description}}</span>{{/link-to}}
-                                        {{#each incident in incidents}}<div> {{incident.description}}</div> {{/each}}
-                                    </li>    
-                              {{/if}}
+                            <div class="box box-primary box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Azure</h3>
+                                    <div class="box-tools pull-right">
+                                        <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+                                    </div><!-- /.box-tools -->
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <blockquote>
+                                        The teams observed and agreed that majority of the major incidents in April was caused or related to Azure Infrastructure, Network, or service-related incidents.  We recommend that we have a conversation w/ the Azure PG and SDO at this month’s Checkpoint Review to discuss Azure Infrastructure, Recovery Services, and Resiliency / DR Roadmap.
+                                    </blockquote>
+
+                                </div><!-- /.box-body -->
                                 
-                                {{/each}}
-                            </ul>
-                      
+
+                            </div><!-- /.col -->
+
+                  
+                            </div><!-- /.box-body -->
+                    
+                        <div class="box-body">
+
+                            <div class="box box-primary box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Platform Specific</h3>
+                                    <div class="box-tools pull-right">
+                                        <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+                                    </div><!-- /.box-tools -->
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <blockquote>
+                                        Aligning with the checkpoint reviews of ASG PG, please select 2 to 3 candidates below for review during the May Checkpoint Review meeting.
+                                    </blockquote>
+
+                                </div><!-- /.box-body -->
+
+
+                            </div><!-- /.col -->
+
+
+                        </div><!-- /.box-body -->
+                        <div class="box-body">
+
+                            <div class="box box-primary box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Office 365 / Exchange </h3>
+                                    <div class="box-tools pull-right">
+                                        <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+                                    </div><!-- /.box-tools -->
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <blockquote>
+                                        Revisit the O365 discussion that we decided to drop in April (I don’t think this is as valuable as Azure or Platform Specific items above.)
+                                    </blockquote>
+
+                                </div><!-- /.box-body -->
+
+
+                            </div><!-- /.col -->
+
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer no-padding">
+                           
                         </div><!-- /.footer -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
@@ -173,7 +218,7 @@
 
             <ol class="breadcrumb">
                 <li>{{#link-to 'themes'}}<i class="fa fa-dashboard"></i>Dashboard{{/link-to}}</li>
-                <li>{{#link-to 'theme' this.id}}Themes by dollar impact{{/link-to}}</li>
+                <li>{{#link-to 'theme' this.id}}Themes by {{theme.name}}{{/link-to}}</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -193,7 +238,7 @@
                                         <div class="progress-bar" style="width: 100%"></div>
                                     </div>
                                     <span class="progress-description">
-                                        Incdents in this category has a potential revenue and brand impact. Compared to total major incidents, 57.1% fall all into Azure category.
+                                        {{theme.tagLine}}
                                     </span>
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->

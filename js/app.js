@@ -92,6 +92,7 @@ var themes = [
       description: "Revenue & Brand",
       incidents: azureIncidents,
       show: true,
+      tagLine: "Incdent(s) in this category has a potential revenue and brand impact. Compared to total major incidents, 57.1% fall all into Azure category.",
 
   },
   {
@@ -101,6 +102,7 @@ var themes = [
       description: "External Customer",
       incidents: plaftormIncidents,
       show: false,
+      tagLine: "Incdent(s) in this category affected external customers. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
   },
   {
       id: '3',
@@ -108,6 +110,7 @@ var themes = [
       cost: "$6,000",
       description: "23,000 Internal Users",
       incidents: [],
+      tagLine: "Incdent(s) in this category affected 23,000 internal users. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
   },
   {
       id: '4',
@@ -115,10 +118,25 @@ var themes = [
       cost: "$9,500",
       description: "External & Sales Impact",
       incidents: [],
+      tagLine: "Incdent(s) in this category affected external cusotmers & sales imapct. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
   },
  
 ];
 
+var recommendations = [
+    {
+        id: '1',
+        details: "text",
+    },
+    {
+        id: '2',
+        details: "text",
+        },
+        {
+        id: '3',
+        details: "text",
+        },
+];
 
 
 var incidents = [
@@ -168,98 +186,47 @@ var incidents = [
   {
 
       id: '4',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      majorincidentId: "MI 2166",
+      description: "SESIT BI MSVoice application impacted for 16h",
+      fullDescription: "MS Voice users were intermittently unable to access the candidate generated files on the Direct Share",
       cost: "$6000",
       iscompliant: 'yes',
       themeId: "2",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      application: "TBD",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear.",
+      rootCauseCategory: "Insufficient Configuration Validation",
+      rootCause: "The MSVoice Application team changed their security group to a distribution group, breaking access in Active Directory.",
+      howDidWeKnow: "TBD"
   },
   {
 
       id: '5',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      majorincidentId: "MI 2156",
+      description: "10h Microsoft Exchange Outage",
+      fullDescription: "A firewall failed, blocking email traffic to and from corporate email accounts",
       cost: "$6000",
       iscompliant: 'yes',
-      themeId: "2",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      themeId: "3",
+      application: "Exchange sends and receives email within the company and to/from external email accounts.",
+      bussinessImpact: " (1) 23K MS internal email accounts were unable to send or receive email for 10 hours (users from non-064D, i.e. Exchange & CORP forest). ",
+      rootCauseCategory: "Insufficient Configuration Validation",
+      rootCause: "An incorrectly configured secondary firewall meant it wasn't available for failover when needed.",
+      howDidWeKnow: "TBD"
   },
   {
 
       id: '6',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
-      cost: "$6000",
-      iscompliant: 'yes',
-      themeId: "3",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
-  },
-  {
-
-      id: '7',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
-      cost: "$8000",
-      iscompliant: 'yes',
-      themeId: "4",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
-  },
-  {
-
-      id: '8',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
-      cost: "$1500",
-      iscompliant: 'yes',
-      themeId: "4",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
-  },
-  {
-
-      id: '9',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      majorincidentId: "MI 2149",
+      description: "20k users unable to access Sales CRM Online for 5h",
+      fullDescription: "Permissions stopped syncing between the IDWEB Security Group and Azure's Active Directory.",
       cost: "$5000",
       iscompliant: 'yes',
-      themeId: "5",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
-  },
-  {
-
-      id: '10',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
-      cost: "$1500",
-      iscompliant: 'yes',
-      themeId: "5",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
-  },
-  {
-
-      id: '11',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
-      cost: "$5000",
-      iscompliant: 'yes',
-      themeId: "6",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      themeId: "4",
+      application: "TBD",
+      bussinessImpact: "20K+ CRM Online (MSX) users were not able to access CRM for 5 hours, resulting in disruptions to the sales process.The sales team was unable to perform their operations and ensure CRM data is up to date..",
+      rootCauseCategory: "Insufficient Monitoring",
+      rootCause: "The service(s) syncing permissions failed to draw attention to the problem in a meaningful way, allowing the incident to occur and preventing quick identification of the cause",
+      howDidWeKnow: "TBD"
   }
 ];
 
@@ -269,7 +236,8 @@ App.Router.map(function () {
     this.resource('themes', function () {
         this.resource('theme', { path: ':theme_id' });
       
-        });
+    });
+    this.resource('recommendations');
         
     this.resource('about');
     this.resource('posts', function () {
