@@ -5,7 +5,7 @@ var azureIncidents = [
   {
       id: '1',
       majorincidenId: "M10002345",
-      description: "Axe Server Outage on Lorem Ipsum",
+      description: "ECIT MBS Partner Website Critical Period DNS Outage",
       fullDescription: "On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue",
       cost: "$1000",
       iscompliant: 'yes',
@@ -285,14 +285,14 @@ App.PostRoute = Ember.Route.extend({
 });
 
 App.ThemesRoute = Ember.Route.extend({
-    model: function () {
+    model: function (params) {
         var data = {
             themes  : themes,
-            incidents: incidents
+            incidents: incidents.filterBy('themeId', params.theme_id)
     }
     
-        //return data;
-        return themes;
+      //return data;
+       return themes;
     }
 });
 
@@ -366,7 +366,7 @@ App.PostController = Ember.ObjectController.extend({
 });
 
     
-//});
+
 var showdown = new Showdown.converter();
 
 Ember.Handlebars.helper('format-markdown', function (input) {
