@@ -1,6 +1,71 @@
 App = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
+var azureIncidents = [
+  {
+      id: '1',
+      majorincidenId: "M10002345",
+      description: "Axe Server Outage on Lorem Ipsum",
+      fullDescription: "On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue",
+      cost: "$1000",
+      iscompliant: 'yes',
+      themeId: "1",
+      application: "Deliver and Store (D&S) enables global digital distribution of Microsoft software images and updates to end customers through various channels (MSDN, VLSC, Office Portal, etc.)",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+  },
+  {
+      id: '2',
+      majorincidentId: "M10003456",
+      description: "Box Network intermittent issue Lorem Ipsum",
+      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      cost: "$4000",
+      iscompliant: 'yes',
+      themeId: "1",
+      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+  },
+  {
+
+      id: '3',
+      majorincidentId: "M10003456",
+      description: "Box Network intermittent issue Lorem Ipsum",
+      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      cost: "$6000",
+      iscompliant: 'yes',
+      themeId: "1",
+      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+  },
+  {
+
+      id: '4',
+      majorincidentId: "M10003456",
+      description: "Box Network intermittent issue Lorem Ipsum",
+      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      cost: "$6000",
+      iscompliant: 'yes',
+      themeId: "1",
+      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+  }
+];
+
+
+var plaftormIncidents = [
+
+  {
+
+      id: '5',
+      majorincidentId: "M10003456",
+      description: "Box Network intermittent issue Lorem Ipsum",
+      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      cost: "$6000",
+      iscompliant: 'yes',
+      themeId: "2",
+      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
+      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+  }
+];
 
 var posts = [{
     id: '1',
@@ -25,6 +90,8 @@ var themes = [
       name: "Azure",
       cost: "$11,000", //change to computed property from incidents data
       description: "Revenue & Brand",
+      incidents: azureIncidents,
+      show: true,
 
   },
   {
@@ -32,21 +99,27 @@ var themes = [
       name: "Platform Specific",
       cost: "$12,000",
       description: "External Customer",
+      incidents: plaftormIncidents,
+      show: false,
   },
   {
       id: '3',
       name: "Exchange",
       cost: "$6,000",
       description: "23,000 Internal Users",
+      incidents: [],
   },
   {
       id: '4',
       name: "Dynamic CRM Online",
       cost: "$9,500",
       description: "External & Sales Impact",
+      incidents: [],
   },
  
 ];
+
+
 
 var incidents = [
   {
@@ -56,7 +129,7 @@ var incidents = [
       fullDescription: "On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue",
       cost: "$1000",
       iscompliant: 'yes',
-      themeId: "1",
+      themeId: "2",
       application: "Deliver and Store (D&S) enables global digital distribution of Microsoft software images and updates to end customers through various channels (MSDN, VLSC, Office Portal, etc.)",
       bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
   },
@@ -181,10 +254,12 @@ var incidents = [
   }
 ];
 
+
+
 App.Router.map(function () {
     this.resource('themes', function () {
         this.resource('theme', { path: ':theme_id' });
-        this.resource('frequency', {path: ':frequency_id'});
+      
         });
         
     this.resource('about');
@@ -211,6 +286,12 @@ App.PostRoute = Ember.Route.extend({
 
 App.ThemesRoute = Ember.Route.extend({
     model: function () {
+        var data = {
+            themes  : themes,
+            incidents: incidents
+    }
+    
+        //return data;
         return themes;
     }
 });
@@ -238,15 +319,7 @@ App.ThemeRoute = Ember.Route.extend({
     }
 });
 
-App.FrequencyRoute = Ember.Route.extend({
-    model: function (params) {
-        var data = {
-            theme: themes.findBy('id', params.frequency_id),
-            incidents: incidents.filterBy('frequencyId', params.theme_id)
-        }
-        return data;
-    }
-});
+
 App.ThemeView = Ember.View.extend({
     didInsertElement: function () {
         $.AdminLTE.boxWidget.activate();
@@ -254,11 +327,28 @@ App.ThemeView = Ember.View.extend({
     }
 });
 
-App.ThemesView = Ember.View.extend({
-    didInsertElement: function () {
-        $.AdminLTE.boxWidget.activate();
-        //$('#')
-    }
+//Ember.View.reopen({
+//    didInsertElement: function () {
+//        $.AdminLTE.boxWidget.activate();
+//        google.load("visualization", "1", { packages: ["corechart"] });
+//        google.setOnLoadCallback(drawChart);
+//        drawChart();
+//    },
+//    afterRenderEvent: function () {
+//        //google.load("visualization", "1", { packages: ["corechart"] });
+//        //google.setOnLoadCallback(drawChart);
+//        //drawChart();
+//    }
+//});
+App.ThemesView = Ember.View.reopen({
+    
+        didInsertElement: function () {
+            $.AdminLTE.boxWidget.activate();
+            google.load("visualization", "1", { packages: ["corechart"] });
+            google.setOnLoadCallback(drawChart);
+            drawChart();
+            console.log("I am in settimeout outside ");
+        }
 });
 
 App.PostController = Ember.ObjectController.extend({
