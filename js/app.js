@@ -124,37 +124,46 @@ var themes = [
 var incidents = [
   {
       id: '1',
-      majorincidenId: "M10002345",
-      description: "Axe Server Outage on Lorem Ipsum",
-      fullDescription: "On March 26th 2015 at 8:00 AM PST, the mailbox used as a queue to auto-generate support tickets began copying email instead of moving it, causing the system to become unresponsive. As part of troubleshooting, the active mailbox was switched to another server, mitigating the issue",
-      cost: "$1000",
+      majorincidentId: "MI 2167",
+      description: "ECIT MBS Partner Website Critical Period DNS Outage",
+      fullDescription: "An Azure DNS issue caused important reporting webpages to become inaccessible for 2h 40min at a critical time of month.",
+      cost: "",
       iscompliant: 'yes',
-      themeId: "2",
+      themeId: "1",
       application: "Deliver and Store (D&S) enables global digital distribution of Microsoft software images and updates to end customers through various channels (MSDN, VLSC, Office Portal, etc.)",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      bussinessImpact: "Impacted month end revenue processing for MSIT Corp users and external partners and agents.",
+      rootCauseCategory: "Single Point of Failure",
+      rootCause: "MSIT has a dependency upon Azure DNS worldwide",
+      howDidWeKnow: "Feature Team"
   },
   {
       id: '2',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      majorincidentId: "MI 2162",
+      description: "Azure ExpressRoute Gateway failure impacting MSIT users",
+      fullDescription: "25 MSIT VMs suddenly disappeared when the Azure ExpressRoute Gateway went into a dead state",
       cost: "$4000",
       iscompliant: 'yes',
       themeId: "1",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      application: "TBD",
+      bussinessImpact: "TBD",
+      rootCauseCategory: "Insufficient Auto-Mitigation",
+      rootCause: "Azure failed to automatically recover their failing Express Route Gateway when it went into a failed state",
+      howDidWeKnow: "Feature Team"
   },
   {
 
       id: '3',
-      majorincidentId: "M10003456",
-      description: "Box Network intermittent issue Lorem Ipsum",
-      fullDescription: "On March 5th, 2015 at 09:00am a free preview download of Office for Mac was released, and the large file size and popularity effectively DDOSed the D&S system",
+      majorincidentId: "MI 2149",
+      description: "20k users unable to access Sales CRM Online for 5h",
+      fullDescription: "In anticipation of planned router maintenance in Quincy, BGP traffic was failed over to the secondary BGP path, but the MS Edge Enterprise team wasn't able to receive it.",
       cost: "$6000",
       iscompliant: 'yes',
       themeId: "1",
-      application: "Nokia’s Legacy SAP ECC P10 system is still used in factories formerly owned by Nokia: Hanoi, Reynosa and Manaus",
-      bussinessImpact: "The system was not accessible to factory operations workers nor in use otherwise, but the details we have on the impact to the business are unclear."
+      application: "TBD",
+      bussinessImpact: "20K+ CRM Online (MSX) users were not able to access CRM for 5 hours, resulting in disruptions to the sales process.The sales team was unable to perform their operations and ensure CRM data is up to date.",
+      rootCauseCategory: "Insufficient Monitoring",
+      rootCause: "The service(s) syncing permissions failed to draw attention to the problem in a meaningful way, allowing the incident to occur and preventing quick identification of the cause.",
+      howDidWeKnow: "TBD"
   },
   {
 
