@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Ember Starter Kit</title>
+    <title>CheckPointReview</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/vendors/adminlte/adminLTE.css">
@@ -115,14 +115,13 @@
 
                             <div class="box box-primary box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Azure</h3>
+                                    <h3 class="box-title">#1: Azure</h3>
                                     <div class="box-tools pull-right">
                                         <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
                                     </div><!-- /.box-tools -->
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <blockquote>
-                                        The teams observed and agreed that majority of the major incidents in April was caused or related to Azure Infrastructure, Network, or service-related incidents.  We recommend that we have a conversation w/ the Azure PG and SDO at this month’s Checkpoint Review to discuss Azure Infrastructure, Recovery Services, and Resiliency / DR Roadmap.
+                                    <blockquote>The teams observed and agreed that majority of the major incidents in April was caused or related to Azure Infrastructure, Network, or service-related incidents.  We recommend that we have a conversation w/ the Azure PG and SDO at this month’s Checkpoint Review to discuss Azure Infrastructure, Recovery Services, and Resiliency / DR Roadmap.
                                     </blockquote>
 
                                 </div><!-- /.box-body -->
@@ -137,14 +136,13 @@
 
                             <div class="box box-primary box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Platform Specific</h3>
+                                    <h3 class="box-title">#2: Platform Specific</h3>
                                     <div class="box-tools pull-right">
                                         <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
                                     </div><!-- /.box-tools -->
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <blockquote>
-                                        Aligning with the checkpoint reviews of ASG PG, please select 2 to 3 candidates below for review during the May Checkpoint Review meeting.
+                                    <blockquote>Aligning with the checkpoint reviews of ASG PG, please select 2 to 3 candidates within any of the themes sections for review during the May Checkpoint Review meeting.
                                     </blockquote>
 
                                 </div><!-- /.box-body -->
@@ -158,14 +156,13 @@
 
                             <div class="box box-primary box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Office 365 / Exchange </h3>
+                                    <h3 class="box-title">#3: Office 365 / Exchange </h3>
                                     <div class="box-tools pull-right">
                                         <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
                                     </div><!-- /.box-tools -->
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <blockquote>
-                                        Revisit the O365 discussion that we decided to drop in April (I don’t think this is as valuable as Azure or Platform Specific items above.)
+                                    <blockquote>Revisit the O365 discussion that we decided to drop in April (I don’t think this is as valuable as Azure or Platform Specific items above.)
                                     </blockquote>
 
                                 </div><!-- /.box-body -->
@@ -248,9 +245,9 @@
                             <div class="form-group">
                                 <div class="box box-primary collapsed-box box-solid">
                                     <div class="box-header">
-                                        <h3 class="box-title">{{incident.description}}</h3>
+                                        <h3 class="box-title">{{incident.description}} -  [{{incident.majorincidentId}}]</h3>
                                         <div class="box-tools pull-right">
-                                            <span><h3 class="box-title"> {{incident.majorincidentId}}</h3></span>
+                                            
                                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                         </div><!-- /.box-tools -->
                                     </div><!-- /.box-header -->
@@ -261,13 +258,13 @@
                                             <!--<footer>[A basic factor about para] <cite title="Source Title">[An insight or comment]</cite></footer>-->
                                         </blockquote>
                                        
-                                        <p><h5><b>What is the business impact</h5></b></p>
+                                        <p><h5><b>Business impact</h5></b></p>
                                         <blockquote>
                                             <p>{{incident.bussinessImpact}}</p>
                                             <!--<footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>-->
                                         </blockquote>
 
-                                        <p><h5><b>What is the root cause</h5></b></p>
+                                        <p><h5><b>Root cause</h5></b></p>
                                         <blockquote>
                                             <p>{{incident.rootCause}}</p>
                                             <!--<footer>Cost: $10,000,000 <cite title="Source Title"> includes direct and indirect impact</cite></footer>-->
@@ -347,9 +344,9 @@
             // Add data.
             data.addRows([
               ['Azure', 4], // Format as "22,500"
-              ['Platform', 1],
-              ['Excahnge', 1],
-              ['CRM Online', 1]
+              ['Platform', 3],
+              ['Exchange', 1],
+              ['CRM', 1]
              
             ],
           false);

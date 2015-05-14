@@ -92,7 +92,7 @@ var themes = [
       description: "Revenue & Brand",
       incidents: azureIncidents,
       show: true,
-      tagLine: "Incdent(s) in this category has a potential revenue and brand impact. Compared to total major incidents, 57.1% fall all into Azure category.",
+      tagLine: "Incident(s) in this category has a potential revenue and brand impact. Compared to total major incidents, 44.4% fall all into Azure category.",
 
   },
   {
@@ -102,7 +102,7 @@ var themes = [
       description: "External Customer",
       incidents: plaftormIncidents,
       show: false,
-      tagLine: "Incdent(s) in this category affected external customers. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
+      tagLine: "Incident(s) in this category affected external customers. Compared to total major incidents, 33.3% fall all into Platform Specific category.",
   },
   {
       id: '3',
@@ -110,7 +110,7 @@ var themes = [
       cost: "$6,000",
       description: "23,000 Internal Users",
       incidents: [],
-      tagLine: "Incdent(s) in this category affected 23,000 internal users. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
+      tagLine: "Incident(s) in this category affected 23,000 internal users. Compared to total major incidents, 11.1% fall all into Platform Specific category.",
   },
   {
       id: '4',
@@ -118,7 +118,7 @@ var themes = [
       cost: "$9,500",
       description: "External & Sales Impact",
       incidents: [],
-      tagLine: "Incdent(s) in this category affected external cusotmers & sales imapct. Compared to total major incidents, 14.3% fall all into Platform Specific category.",
+      tagLine: "Incident(s) in this category affected external cusotmers & sales imapct. Compared to total major incidents, 11.1% fall all into Platform Specific category.",
   },
  
 ];
@@ -163,7 +163,7 @@ var incidents = [
       iscompliant: 'yes',
       themeId: "1",
       application: "TBD",
-      bussinessImpact: "TBD",
+      bussinessImpact: "Multiple BPU impact, revenue and brand.",
       rootCauseCategory: "Insufficient Auto-Mitigation",
       rootCause: "Azure failed to automatically recover their failing Express Route Gateway when it went into a failed state",
       howDidWeKnow: "Feature Team"
@@ -183,9 +183,24 @@ var incidents = [
       rootCause: "The service(s) syncing permissions failed to draw attention to the problem in a meaningful way, allowing the incident to occur and preventing quick identification of the cause.",
       howDidWeKnow: "TBD"
   },
+   {
+
+       id: '4',
+       majorincidentId: "MI 2154",
+       description: "1K MSIT Azure VMs lost for 25 hours",
+       fullDescription: "In anticipation of planned router maintenance in Quincy, BGP traffic was failed over to the secondary BGP path, but the MS Edge Enterprise team wasn't able to receive it.",
+       cost: "$6000",
+       iscompliant: 'yes',
+       themeId: "1",
+       application: "Multiple BPU impact, revenue and brand.",
+       bussinessImpact: "20K+ CRM Online (MSX) users were not able to access CRM for 5 hours, resulting in disruptions to the sales process.The sales team was unable to perform their operations and ensure CRM data is up to date.",
+       rootCauseCategory: "Insufficient Monitoring",
+       rootCause: "The service(s) syncing permissions failed to draw attention to the problem in a meaningful way, allowing the incident to occur and preventing quick identification of the cause.",
+       howDidWeKnow: "TBD"
+   },
   {
 
-      id: '4',
+      id: '5',
       majorincidentId: "MI 2166",
       description: "SESIT BI MSVoice application impacted for 16h",
       fullDescription: "MS Voice users were intermittently unable to access the candidate generated files on the Direct Share",
@@ -198,9 +213,39 @@ var incidents = [
       rootCause: "The MSVoice Application team changed their security group to a distribution group, breaking access in Active Directory.",
       howDidWeKnow: "TBD"
   },
+   {
+
+       id: '6',
+       majorincidentId: "IM 4092727",
+       description: "ICOE: Citibank delayed and duplicate payments",
+       fullDescription: "BizTalk processed a 0KB file out to CFIT which triggered delayed payments to CITIBANK and a duplicate payment ($309M).",
+       cost: "$6000",
+       iscompliant: 'yes',
+       themeId: "2",
+       application: "TBD",
+       bussinessImpact: "There was a delay in processing payments, but no other business impact since CITIBANK identified the duplicate payment and blocked it.",
+       rootCauseCategory: "Insufficient Monitoring",
+       rootCause: "t took three days to detect that CFIT processing was blocked after the BizTalk file adapter dropped an invalid 0KB file. Then, during cleanup, when the BizTalk host instances were restarted the original file content was processed to CITIBANK and a duplicate sent when  CFIT manually retriggered the same file believing the original file was never processed.",
+       howDidWeKnow: "Internal Patner"
+   },
+    {
+
+        id: '7',
+        majorincidentId: "IM 4080705",
+        description: "SAP: Invoice Processing Services Impacted – SCIT",
+        fullDescription: "Invoices created in SAP couldn’t be posted to Accounting due to Invalid Tax updates in Vertex",
+        cost: "$6000",
+        iscompliant: 'yes',
+        themeId: "2",
+        application: "SAP is a large database that handles a variety of tasks, including invoice processing and other financial and accounting services.",
+        bussinessImpact: "Total 768 Invoices (~$ 4m) had to be cancelled and rebilled",
+        rootCauseCategory: "Design/Architectural Flaw/Limitation",
+        rootCause: "The Vertex team deactivated tax ids in their system without mirroring the changes in SAP, resulting in incorrect tax ids being used in SAP for Invoicing. Monitoring alerts started to fire, but the expected Operations response was not well understood.",
+        howDidWeKnow: "TBD"
+    },
   {
 
-      id: '5',
+      id: '8',
       majorincidentId: "MI 2156",
       description: "10h Microsoft Exchange Outage",
       fullDescription: "A firewall failed, blocking email traffic to and from corporate email accounts",
@@ -215,7 +260,7 @@ var incidents = [
   },
   {
 
-      id: '6',
+      id: '9',
       majorincidentId: "MI 2149",
       description: "20k users unable to access Sales CRM Online for 5h",
       fullDescription: "Permissions stopped syncing between the IDWEB Security Group and Azure's Active Directory.",
